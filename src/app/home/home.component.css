@@ -1,0 +1,9 @@
+md-sidenav{
+    width: 200px;
+    background-color: #C5CAE9;
+}
+.list{
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}

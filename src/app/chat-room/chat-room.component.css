@@ -1,0 +1,17 @@
+.button{
+    display: flex;
+    align-items: flex-end;
+}
+.chat-text-box{
+    display: flex;
+    min-width: 100%;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+.background{
+    background-color: #C5CAE9;
+}
+.text-area{
+    padding: 10px;
+}

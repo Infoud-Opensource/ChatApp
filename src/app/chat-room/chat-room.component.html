@@ -1,0 +1,20 @@
+<md-toolbar color="primary" class="button">
+  <button md-button color="accent" (click)="logout()">Logout</button>
+</md-toolbar>
+<md-card class="main-content">
+  <div class="background">
+  <div class="chat-text-box">
+    <md-input-container class="input-field">
+      <input mdInput type="text" placeholder="Write Message Here.." [(ngModel)]="msg">
+    </md-input-container>&nbsp;
+    <button md-raised-button color="primary" (click)="sendMessage()">Send</button>
+  </div>
+  <div class="message-list">
+    <ul>
+      <li *ngFor="let item of msgList | async">
+        <div class="text-area">{{ item.text }}</div>
+      </li>
+    </ul>
+  </div>
+  </div>
+</md-card>

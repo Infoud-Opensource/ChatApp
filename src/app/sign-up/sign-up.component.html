@@ -1,0 +1,25 @@
+<div class="main">
+  <form [formGroup]="signUpForm" (ngSubmit)="signup($event)">
+    <md-card class="card">
+      <md-card-header>
+        <md-card-title>Sign Up</md-card-title>
+      </md-card-header>
+      <md-card-content>
+        <md-input-container class="input-field">
+          <input mdInput type="text" [(ngModel)]="email" placeholder="email" formControlName="email">
+          <div class="error" Error-color *ngIf="(signUpForm.controls['email'].dirty || isSubmitted) && signUpForm.controls['email'].invalid">
+            <span *ngIf="signUpForm.controls['email'].errors['required']">Enter Your Email</span>
+            <span *ngIf="signUpForm.controls['email'].errors['pattern']">Invalid Email</span>
+          </div>
+        </md-input-container><br>
+        <md-input-container class="input-field">
+          <input mdInput type="password" [(ngModel)]="password" placeholder="password" formControlName="password">
+          <div class="error" Error-color *ngIf="(signUpForm.controls['password'].dirty || isSubmitted) && signUpForm.controls['password'].invalid">Enter Your Password</div>
+        </md-input-container>
+      </md-card-content>
+      <md-card-actions class="action">
+        <button class="submit" md-raised-button color="primary" (click)="signup()" [disabled]="!email || !password">Signup</button>
+      </md-card-actions>
+    </md-card>
+  </form>
+</div>

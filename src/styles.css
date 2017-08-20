@@ -1,1 +1,22 @@
-/* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+/*public pages  */
+.main{
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    min-width: 100%;
+}
+.card{
+    width: 300px;
+}
+.input-field{
+    min-width: 90%;
+    margin-top: 20px !important;
+}
+.action{
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    margin-bottom: 20px !important;
+}
