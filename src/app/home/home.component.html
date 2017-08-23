@@ -1,13 +1,12 @@
-<p>home works</p>
- <md-sidenav-container fullscreen>
-  <md-sidenav class="mat-elevation-z4" #sidenav align="right" mode="side" opened="true" disableClose="true" >
+<md-sidenav-container fullscreen>
+  <md-sidenav class="mat-elevation-z4" #sidenav align="right" mode="side" opened="true" disableClose="true">
     <div class="list">
-    <a md-raised-button [routerLink]="['/chatRoom']">Group Chat</a>
+      <a md-raised-button [routerLink]="['/chatRoom']">Group Chat</a>
     </div>
   </md-sidenav>
 
   <div>
-     <router-outlet></router-outlet> 
+    <router-outlet></router-outlet>
   </div>
 
-</md-sidenav-container> 
+</md-sidenav-container>

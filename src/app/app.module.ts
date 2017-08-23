@@ -7,7 +7,7 @@ import { AngularFireModule,  } from 'angularfire2';
 import { HttpModule } from '@angular/http';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
-import { RouterModule, Routes } from '@angular/router';
+import { AppRouterModule } from './app-router/app-router.module';
 
 //angular material
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -27,20 +27,15 @@ import { SignInComponent } from './sign-in/sign-in.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { ChatRoomComponent } from './chat-room/chat-room.component';
 import { HomeComponent } from './home/home.component';
+import { IndexComponent } from './index/index.component';
 
 //services
-import { AuthService } from './auth.service';
+import { AuthService } from './services/auth/auth.service';
 import { ErrorColorDirective } from './error-color.directive';
-
-const Routes: Routes = [
-  { path: 'signIn', component: SignInComponent },
-  { path: 'signUp', component: SignUpComponent },
-  { path: 'home', component: HomeComponent },
-  { path: 'chatRoom', component: ChatRoomComponent },
-  { path: '', redirectTo: '/SignIn', pathMatch: 'full'
-  },
-  { path: '**', component: SignInComponent }
-];
+import { AuthStateService } from './services/auth/auth-state.service';
+import { PrivateGuard } from './services/auth/private.guard';
+import { PublicGuard } from './services/auth/public.guard';
+import { FirebaseService } from './services/firebase/firebase.service';
 
 @NgModule({
   declarations: [
@@ -49,10 +44,11 @@ const Routes: Routes = [
     SignUpComponent,
     ChatRoomComponent,
     HomeComponent,
+    IndexComponent,
     ErrorColorDirective
   ],
   imports: [
-    RouterModule.forRoot(Routes),
+    AppRouterModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule,
     AngularFireDatabaseModule,
@@ -68,7 +64,13 @@ const Routes: Routes = [
     MdSidenavModule
     
   ],
-  providers: [AuthService],
+  providers: [
+    AuthService,
+    AuthStateService,
+    PrivateGuard,
+    PublicGuard,
+    FirebaseService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

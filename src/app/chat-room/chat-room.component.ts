@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FirebaseListObservable, AngularFireDatabase } from 'angularfire2/database';
 import { AngularFireAuth, AUTH_PROVIDERS } from 'angularfire2/auth';
-import { AuthService } from '../auth.service';
+import { AuthService } from '../services/auth/auth.service';
 import * as firebase from 'firebase/app';
 
 @Component({
@@ -23,9 +23,7 @@ export class ChatRoomComponent implements OnInit {
     this._authService.sendMessageToFirebase(this.msg) 
     this.msg = "";
   }
-
-
-
+  
   logout() {
     this._authService.logout();
   }
