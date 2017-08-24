@@ -6,7 +6,9 @@
   <div class="message-list">
     <ul>
       <li *ngFor="let item of msgList | async">
-        <div class="text-area">{{ item.text }}</div>
+        <div class="text-area">{{ item.text }} &nbsp; &nbsp;
+          <span>{{timeStamp | date : 'medium'}}</span>
+        </div>
       </li>
     </ul>
   </div>
