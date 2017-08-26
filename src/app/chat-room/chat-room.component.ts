@@ -13,18 +13,30 @@ export class ChatRoomComponent implements OnInit {
 
   msg;
   msgList;
+  userEmail: string;
+  ownEmail: string;
+  isOwnMessage: boolean;
+  timeStamp: Date = new Date();
+  timeSent: Date = new Date ();
 
-  constructor(public _authService: AuthService) {}
-
-  ngOnInit() { this.msgList = this._authService.getMessages() }
-
-  sendMessage() { 
-    console.log(this.msg);
-    this._authService.sendMessageToFirebase(this.msg) 
-    this.msg = "";
+  constructor(public _authService: AuthService) {
+    // _authService.authUser().subscribe (user => {
+    //   this.ownEmail = user.email;
+    //   this.isOwnMessage = this.ownEmail === this.userEmail;
+    // })
   }
-  
+
+  ngOnInit() { 
+    this.msgList = this._authService.getMessages();
+  }
+
   logout() {
     this._authService.logout();
+  }
+
+  sendMessage() { 
+    this._authService.sendMessageToFirebase(this.msg);
+    this.timeStamp = this.msg.timeSent;
+    this.msg = "";
   }
 }

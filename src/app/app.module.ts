@@ -28,6 +28,8 @@ import { SignUpComponent } from './sign-up/sign-up.component';
 import { ChatRoomComponent } from './chat-room/chat-room.component';
 import { HomeComponent } from './home/home.component';
 import { IndexComponent } from './index/index.component';
+import { UsersComponent } from './users/users.component';
+
 
 //services
 import { AuthService } from './services/auth/auth.service';
@@ -45,7 +47,8 @@ import { FirebaseService } from './services/firebase/firebase.service';
     ChatRoomComponent,
     HomeComponent,
     IndexComponent,
-    ErrorColorDirective
+    ErrorColorDirective,
+    UsersComponent
   ],
   imports: [
     AppRouterModule,

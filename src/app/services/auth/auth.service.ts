@@ -19,6 +19,10 @@ export class AuthService {
     this.MESSAGES = this._db.list('/messages');
   }
 
+  authUser(){
+    return this.user;
+  }
+
   signup(email: string, password: string) {
     this._firebaseAuth
       .auth
