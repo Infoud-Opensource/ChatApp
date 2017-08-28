@@ -10,6 +10,7 @@ export class AuthService {
 
   user: Observable<firebase.User>;
   MESSAGES: FirebaseListObservable<any>;
+  users: FirebaseListObservable<any>;
   errorMsg : any;
   private isLoggedIn: Boolean;
   private email: String;
@@ -17,6 +18,7 @@ export class AuthService {
   constructor(private _firebaseAuth: AngularFireAuth, public _router: Router, private _db: AngularFireDatabase) {
     this.user = _firebaseAuth.authState;
     this.MESSAGES = this._db.list('/messages');
+    this.users = this._db.list('/users');
   }
 
   authUser(){

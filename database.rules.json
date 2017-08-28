@@ -5,6 +5,11 @@
       "$uid": {
         ".write": "auth != null && $uid == auth.uid"
       }
+    },
+      "messages": {
+      ".read":"true",
+      ".write":"true"    
     }
   }
 }
+
