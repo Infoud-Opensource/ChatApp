@@ -10,7 +10,6 @@ export class AuthService {
 
   user: Observable<firebase.User>;
   MESSAGES: FirebaseListObservable<any>;
-  users: FirebaseListObservable<any>;
   errorMsg : any;
   private isLoggedIn: Boolean;
   private email: String;
@@ -18,14 +17,13 @@ export class AuthService {
   constructor(private _firebaseAuth: AngularFireAuth, public _router: Router, private _db: AngularFireDatabase) {
     this.user = _firebaseAuth.authState;
     this.MESSAGES = this._db.list('/messages');
-    this.users = this._db.list('/users');
   }
 
   authUser(){
     return this.user;
   }
 
-  signup(email: string, password: string) {
+  signup( email: string, password: string) {
     this._firebaseAuth
       .auth
       .createUserWithEmailAndPassword(email, password)
@@ -38,7 +36,7 @@ export class AuthService {
       });
   }
 
-  login(email: string, password: string) {
+  login( email: string, password: string) {
     this._firebaseAuth
       .auth
       .signInWithEmailAndPassword(email, password)
@@ -58,6 +56,8 @@ export class AuthService {
   getMessages() { 
     return this.MESSAGES 
   }
+
+  
 
   logout() {
     this._firebaseAuth.auth.signOut();
