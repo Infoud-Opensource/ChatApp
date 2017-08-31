@@ -20,6 +20,8 @@ import
   MdSidenavModule
 
 } from '@angular/material';
+import {EmojiPickerModule} from 'ng-emoji-picker';
+import { Ng2EmojiModule } from 'ng2-emoji';
 
 //components
 import { AppComponent } from './app.component';
@@ -64,8 +66,9 @@ import { FirebaseService } from './services/firebase/firebase.service';
     MdCardModule,
     MdButtonModule,
     MdToolbarModule,
-    MdSidenavModule
-    
+    MdSidenavModule,
+    EmojiPickerModule,
+    Ng2EmojiModule.forRoot()
   ],
   providers: [
     AuthService,
