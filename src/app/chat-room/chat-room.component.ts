@@ -3,6 +3,7 @@ import { FirebaseListObservable, AngularFireDatabase } from 'angularfire2/databa
 import { AngularFireAuth, AUTH_PROVIDERS } from 'angularfire2/auth';
 import { AuthService } from '../services/auth/auth.service';
 import * as firebase from 'firebase/app';
+ 
 
 @Component({
   selector: 'app-chat-room',
@@ -18,13 +19,18 @@ export class ChatRoomComponent implements OnInit {
   isOwnMessage: boolean;
   timeStamp: Date = new Date();
   timeSent: Date = new Date ();
+  public messageString: string = "";
+
 
   constructor(public _authService: AuthService) {
     // _authService.authUser().subscribe (user => {
     //   this.ownEmail = user.email;
     //   this.isOwnMessage = this.ownEmail === this.userEmail;
     // })
+    this.messageString = "Hello, how are you? :smile:";
   }
+
+  
 
   ngOnInit() { 
     this.msgList = this._authService.getMessages();

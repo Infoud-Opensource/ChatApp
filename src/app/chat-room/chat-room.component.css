@@ -15,3 +15,8 @@
 .text-area{
     padding: 10px;
 }
+.emogi-image {
+  height: 60px;
+  width: 60px;
+  border-radius: 50%;
+}
