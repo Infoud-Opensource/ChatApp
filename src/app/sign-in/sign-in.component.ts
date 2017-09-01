@@ -14,6 +14,7 @@ export class SignInComponent implements OnInit {
 
   email: string;
   password: string;
+  name: string;
   user: any;
   isSubmitted = false;
 

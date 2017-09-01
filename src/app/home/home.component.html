@@ -1,9 +1,8 @@
 <md-sidenav-container fullscreen>
   <md-sidenav class="mat-elevation-z4" #sidenav align="right" mode="side" opened="true" disableClose="true">
-    <div class="list">
-      <a md-raised-button [routerLink]="['chatRoom']" routerLinkActive="active">Group Chat</a><br>
-      <a md-raised-button [routerLink]="['user']" routerLinkActive="active">User</a>
-    </div>
+      <div>
+      <app-users></app-users>
+      </div>
   </md-sidenav>
 
   <div>

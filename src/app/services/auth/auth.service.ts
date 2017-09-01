@@ -10,7 +10,7 @@ export class AuthService {
 
   user: Observable<firebase.User>;
   MESSAGES: FirebaseListObservable<any>;
-  errorMsg : any;
+  errorMsg: any;
   private isLoggedIn: Boolean;
   private email: String;
 
@@ -19,24 +19,26 @@ export class AuthService {
     this.MESSAGES = this._db.list('/messages');
   }
 
-  authUser(){
+  authUser() {
     return this.user;
   }
 
-  signup( email: string, password: string) {
+  signup(email: string, password: string, name: string) {
     this._firebaseAuth
       .auth
       .createUserWithEmailAndPassword(email, password)
       .then(value => {
+        this.sentNameToFirebase(value.uid, name).then(() => {
+          this._router.navigate(['/signIn']);
+        })
         console.log('Success!', value);
-        this._router.navigate(['/signIn']);
       })
       .catch(err => {
         console.error('Something went wrong:', err.message);
       });
   }
 
-  login( email: string, password: string) {
+  login(email: string, password: string) {
     this._firebaseAuth
       .auth
       .signInWithEmailAndPassword(email, password)
@@ -44,20 +46,23 @@ export class AuthService {
         console.log('Nice, it worked!');
         this._router.navigate(['/home']);
       })
-      .catch(err => { this.errorMsg = err.message;
+      .catch(err => {
+        this.errorMsg = err.message;
         console.error('Something went wrong:', err.message);
       });
   }
 
-  sendMessageToFirebase(msg) { 
-    this.MESSAGES.push({ "text": msg, "time": new Date() }) 
+  sentNameToFirebase(uid, name) {
+    return this._db.object(`users/${uid}`).update({ name: name });
   }
 
-  getMessages() { 
-    return this.MESSAGES 
+  sendMessageToFirebase(msg) {
+    this.MESSAGES.push({ "text": msg, "time": new Date() })
   }
 
-  
+  getMessages() {
+    return this.MESSAGES
+  }
 
   logout() {
     this._firebaseAuth.auth.signOut();

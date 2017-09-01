@@ -5,6 +5,7 @@
         <md-card-title>Sign In</md-card-title>
       </md-card-header>
       <md-card-content>
+
         <md-input-container class="input-field">
           <input mdInput type="text" [(ngModel)]="email" placeholder="email" formControlName="email">
           <div class="error" Error-color *ngIf="(signInForm.controls['email'].dirty || isSubmitted) && signInForm.controls['email'].invalid">
@@ -12,14 +13,16 @@
             <span *ngIf="signInForm.controls['email'].errors['pattern']">Invalid Email</span>
           </div>
         </md-input-container><br>
+
         <md-input-container class="input-field">
           <input mdInput type="password" [(ngModel)]="password" placeholder="password" formControlName="password">
           <div class="error" Error-color *ngIf="(signInForm.controls['password'].dirty || isSubmitted) && signInForm.controls['password'].invalid">Enter Your Password</div>
         </md-input-container>
+        
       </md-card-content>
       <md-card-actions class="action">
         <button class="submit" md-raised-button color="primary" [disabled]="!email || !password">Login</button><br>
-        <a class="signUpLink" md-button color="accent" [routerLink]="['signUp']" routerLinkActive="active">Dont have an Account? Click here</a>
+        <a class="signUpLink" color="accent" md-button [routerLink]="['../signUp']">Dont have an Account? Click here</a>
       </md-card-actions>
     </md-card>
   </form>

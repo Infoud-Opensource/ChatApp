@@ -6,7 +6,6 @@ import { SignInComponent } from '../sign-in/sign-in.component';
 import { SignUpComponent } from '../sign-up/sign-up.component';
 import { ChatRoomComponent } from '../chat-room/chat-room.component';
 import { HomeComponent } from '../home/home.component';
-import { UsersComponent } from '../users/users.component';
 
 // auth gaurds
 import { PrivateGuard } from '../services/auth/private.guard';
@@ -30,9 +29,8 @@ const Routes: Routes = [
     canActivateChild: [PrivateGuard],
     children: [
       { path: 'chatRoom', component: ChatRoomComponent },
-      { path: 'user', component: UsersComponent },
-      { path: '', redirectTo: 'chatRoom', pathMatch: 'full'},
-      { path: '**', redirectTo: 'chatRoom' }
+      { path: '', redirectTo: 'home', pathMatch: 'full'},
+      { path: '**', redirectTo: 'home' }
     ]
   },
   { path: '', redirectTo: 'public', pathMatch: 'full' },

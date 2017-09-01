@@ -4,6 +4,10 @@
       ".read": "auth != null",
       "$uid": {
         ".write": "auth != null && $uid == auth.uid"
+      },
+      "$name": {
+        ".read": "true",
+        ".write": "true"
       }
     },
       "messages": {
