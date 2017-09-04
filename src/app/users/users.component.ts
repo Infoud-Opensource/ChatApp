@@ -23,6 +23,7 @@ export class UsersComponent implements OnInit {
    }
 
   //  toChatRoom(){
+  //   if(this.users )
   //   this._router.navigate(['/chatRoom']);
   //  }
 

@@ -28,7 +28,8 @@ export class SignUpComponent implements OnInit {
 
   signup($event) {
     this.isSubmitted = true;
-    this._authService.signup(this.email, this.password, this.name);
+    this._authService.signup(this.email, this.password, this.name)
+    .then(() => console.log("Success"))
     this.email = this.password = '';
     this.name = '';
   }

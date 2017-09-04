@@ -14,26 +14,22 @@ export class ChatRoomComponent implements OnInit {
 
   msg;
   msgList;
-  userEmail: string;
+  name;
   ownEmail: string;
   isOwnMessage: boolean;
-  timeStamp: Date = new Date();
-  timeSent: Date = new Date ();
   public messageString: string = "";
 
 
-  constructor(public _authService: AuthService) {
+  constructor(public _authService: AuthService, private _db: AngularFireDatabase) {
     // _authService.authUser().subscribe (user => {
     //   this.ownEmail = user.email;
     //   this.isOwnMessage = this.ownEmail === this.userEmail;
     // })
     this.messageString = "Hello, how are you? :smile:";
   }
-
-  
-
   ngOnInit() { 
     this.msgList = this._authService.getMessages();
+    this.name = this._authService.getName();  
   }
 
   logout() {
@@ -42,7 +38,6 @@ export class ChatRoomComponent implements OnInit {
 
   sendMessage() { 
     this._authService.sendMessageToFirebase(this.msg);
-    this.timeStamp = this.msg.timeSent;
     this.msg = "";
   }
 }
