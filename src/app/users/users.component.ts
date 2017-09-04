@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 export class UsersComponent implements OnInit {
 
   users: FirebaseListObservable<any>;
+  user;
 
   constructor(private _authService: AuthService,private _db: AngularFireDatabase, private _router: Router) {
     this.users = this._db.list(`/users`);
@@ -20,14 +21,22 @@ export class UsersComponent implements OnInit {
           // console.log(snapshot.key,snapshot.val());    
         });
       })
+
    }
 
-  //  toChatRoom(){
-  //   if(this.users )
-  //   this._router.navigate(['/chatRoom']);
-  //  }
+   toChatRoom(uid){
+    this.user = this._db.object(`users/${uid}`);
+    this.user.subscribe(data => {
+      if(data.$value !== null){
+        console.log('user does not exist');
+      }
+      else{
+        console.log("user exists");          
+        this._router.navigate(['/chatRoom']);  
+      }
+    })
+   }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
 }

@@ -1,6 +1,6 @@
 <p class="title">List Of Users </p>
 <div class="user-list">
   <div *ngFor="let item of users | async">
-    <a class="buttons" [routerLink]="['chatRoom']" (click)="toChatRoom()" md-raised-button color="primary">{{ item.name}}</a>
+    <a class="buttons"  (click)="toChatRoom(uid)" md-raised-button color="primary">{{ item.name}}</a>
   </div>
 </div>
