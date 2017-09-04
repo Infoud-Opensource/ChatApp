@@ -32,10 +32,6 @@ export class ChatRoomComponent implements OnInit {
     this.name = this._authService.getName();  
   }
 
-  logout() {
-    this._authService.logout();
-  }
-
   sendMessage() { 
     this._authService.sendMessageToFirebase(this.msg);
     this.msg = "";

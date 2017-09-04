@@ -17,7 +17,7 @@ exports.createUser = functions.auth.user().onCreate(event => {
       console.log(value);
       return admin.database().ref(`p2p/c1/users/${value.uid}`).update({
             uid1: value.uid,
-            uid2: value.uid2
+            uid2: event.params.uid2
       })
   });
 

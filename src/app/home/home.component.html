@@ -1,12 +1,15 @@
 <md-sidenav-container fullscreen>
-  <md-sidenav class="mat-elevation-z4" #sidenav align="right" mode="side" opened="true" disableClose="true">
-      <div>
-      <app-users></app-users>
-      </div>
-  </md-sidenav>
+    <md-toolbar color="primary" class="button">
+        <button md-raised-button color="accent" (click)="logout()">Logout</button>
+    </md-toolbar>
+    <md-sidenav class="mat-elevation-z4" #sidenav align="right" mode="side" opened="true" disableClose="true">
+        <div>
+            <app-users></app-users>
+        </div>
+    </md-sidenav>
 
-  <div>
-    <router-outlet></router-outlet>
-  </div>
+    <div>
+        <router-outlet></router-outlet>
+    </div>
 
 </md-sidenav-container>

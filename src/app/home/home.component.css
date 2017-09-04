@@ -7,3 +7,7 @@ md-sidenav{
     justify-content: center;
     margin-top: 10px;
 }
+.button{
+    display: flex;
+    align-items: flex-end;
+}

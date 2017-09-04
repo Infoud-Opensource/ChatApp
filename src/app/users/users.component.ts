@@ -21,7 +21,6 @@ export class UsersComponent implements OnInit {
           // console.log(snapshot.key,snapshot.val());    
         });
       })
-
    }
 
    toChatRoom(uid){
@@ -32,7 +31,7 @@ export class UsersComponent implements OnInit {
       }
       else{
         console.log("user exists");          
-        this._router.navigate(['/chatRoom']);  
+        this._router.navigate(['../chatRoom']);  
       }
     })
    }
