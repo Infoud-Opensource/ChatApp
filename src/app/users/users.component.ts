@@ -32,8 +32,8 @@ export class UsersComponent implements OnInit {
         console.log('user does not exist');
       }
       else{
-        console.log("user exists");        
-        this._router.navigate(['../chatRoom']);  
+        this._router.navigate(['/home/chatRoom']);
+        console.log("user exists");            
       }
     })
    }

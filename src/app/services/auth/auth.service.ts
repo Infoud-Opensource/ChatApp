@@ -14,12 +14,15 @@ export class AuthService {
   errorMsg: any;
   private isLoggedIn: Boolean;
   private email: String;
+  public userKey: string;
+  currentUser = firebase.auth().currentUser;
 
   constructor(private _firebaseAuth: AngularFireAuth, public _router: Router, private _db: AngularFireDatabase) {
     this._firebaseAuth.authState.subscribe(
       (auth) => {
         if (auth != null){
           this.user = _db.object('users/' + auth.uid);
+          this.userKey = auth.uid;
           // this.name = _db.object('users/' + auth.name);
         }
       });
@@ -55,6 +58,15 @@ export class AuthService {
   logout() {
     this._firebaseAuth.auth.signOut();
     this._router.navigate(['/signIn']);
+  }
+
+  deleteUser() {
+    this.currentUser.delete().then(function(){
+      console.log("user deleted");
+      this._router.navigate(['/signIn'])
+    }).catch(function(error){
+      console.log(error)
+    });
   }
 
 }

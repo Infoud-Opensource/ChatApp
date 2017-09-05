@@ -21,7 +21,9 @@ import
   MdToolbarModule,
   MdSidenavModule,
   MdIconModule,
-  MdAutocompleteModule
+  MdAutocompleteModule,
+  MdMenuModule,
+
 
 } from '@angular/material';
 import {EmojiPickerModule} from 'ng-emoji-picker';
@@ -72,10 +74,11 @@ import { FirebaseService } from './services/firebase/firebase.service';
     MdToolbarModule,
     MdSidenavModule,
     EmojiPickerModule,
-    MdIconModule,
     MdAutocompleteModule,
     Ng2EmojiModule.forRoot(),
-    MaterialModule
+    MaterialModule,
+    MdMenuModule,
+    MdIconModule,
   ],
   providers: [
     AuthService,
