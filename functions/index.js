@@ -4,7 +4,6 @@ admin.initializeApp(functions.config().firebase);
 
 exports.createUser = functions.auth.user().onCreate(event => {
     const value= event.data;
-    
     console.log(value);
     return admin.database().ref(`users/${value.uid}`).update({
         email: value.email,
@@ -12,28 +11,34 @@ exports.createUser = functions.auth.user().onCreate(event => {
       })
   });
 
-  exports.p2p = functions.auth.user().onCreate(event => {
+  exports.deleteUser = functions.auth.user().onDelete(event => {
       const value = event.data;
       console.log(value);
-      return admin.database().ref(`p2p/c1/users/${value.uid}`).update({
-            uid1: value.uid,
-            uid2: event.params.uid2
-      })
-  });
+      return admin.database().ref(`users/${value.uid}`).remove();
+  })
 
-exports.p2pMap = functions.auth.user().onCreate(event => {
-    const value = event.data;
-    console.log(value);
-    return admin.database().ref(`p2pMap/${value.uid1}`).update({
-        uid1:  c1
-    })
-})
+//   exports.p2p = functions.auth.user().onCreate(event => {
+//       const value = event.data;
+//       console.log(value);
+//       return admin.database().ref(`p2p/c1/users/${value.uid}`).update({
+//             uid1: value.uid,
+//             uid2: event.params.uid2
+//       })
+//   });
+
+// exports.p2pMap = functions.auth.user().onCreate(event => {
+//     const value = event.data;
+//     console.log(value);
+//     return admin.database().ref(`p2pMap/${value.uid1}`).update({
+//         uid1:  c1
+//     })
+// })
 
 
-exports.group = functions.auth.user().onCreate(event => { 
-    const value = event.data;
-    console.log(value);
-    return admin.database().ref(`group/g1/users/${value.uid}`).update({
+// exports.group = functions.auth.user().onCreate(event => { 
+//     const value = event.data;
+//     console.log(value);
+//     return admin.database().ref(`group/g1/users/${value.uid}`).update({
 
-    })
-})
+//     })
+// })

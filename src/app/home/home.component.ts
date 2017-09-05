@@ -13,6 +13,10 @@ export class HomeComponent implements OnInit {
   logout() {
     this._authService.logout();
   }
+
+  deleteUser(){
+    this._authService.deleteUser();
+  }
   ngOnInit() {
   }
 
