@@ -28,7 +28,7 @@ const Routes: Routes = [
     canActivate: [PrivateGuard],
     canActivateChild: [PrivateGuard],
     children: [
-      { path: 'chatRoom', component: ChatRoomComponent },
+      { path: 'chatRoom/:convId', component: ChatRoomComponent },
       { path: '', redirectTo: 'home', pathMatch: 'full'},
       { path: '**', redirectTo: 'home' }
     ]

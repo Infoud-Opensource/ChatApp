@@ -1,26 +1,19 @@
 <md-card class="main-content">
   <div class="background">
 
-      <div *ngFor="let value of name | async">
-          <div class="text-area">{{ value.name }}</div>
-    </div> 
+    <div *ngFor="let value of name | async">
+      <div class="text-area">{{ value.name }}</div>
+    </div>
 
-  <div *ngFor="let item of msgList | async" class="message-list">
-        <div class="text-area">{{ item.text }}</div>
-  </div>
+    <div *ngFor="let item of msgList | async" class="message-list">
+      <div class="text-area">{{ item.text }}</div>
+    </div>
 
-  <div class="chat-text-box">
-    <md-input-container class="input-field">
-      <input mdInput type="text" placeholder="Write Message Here.." [(ngModel)]="msg" (keyup.enter)="sendMessage()" [innerHTML]="messageString | emojis">
-    </md-input-container>&nbsp;
-    <!--<emoji-input class ="input-field" type="text"
-  [onEnter]="onEnterFunction"
-  [popupAnchor]="'bottom'"
-  [(model)]="bindedVariable" [(ngModel)]="msg">
-</emoji-input>-->
-    <button md-raised-button color="primary" (click)="sendMessage()">Send</button>
-  </div>
-  <div class="message-container" [innerHTML]="messageString | emojis">
- </div>
+    <div class="chat-text-box">
+      <md-input-container class="input-field">
+        <input mdInput type="text" placeholder="Write Message Here.." [(ngModel)]="msg" (keyup.enter)="sendMessage()" [innerHTML]="messageString | emojis">
+      </md-input-container>&nbsp;
+      <button md-raised-button color="primary" (click)="sendMessage()">Send</button>
+    </div>
   </div>
 </md-card>

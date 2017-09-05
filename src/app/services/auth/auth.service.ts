@@ -21,7 +21,7 @@ export class AuthService {
     this._firebaseAuth.authState.subscribe(
       (auth) => {
         if (auth != null){
-          this.user = _db.object('users/' + auth.uid);
+          this.user = _db.object(`users/${auth.uid}`);
           this.userKey = auth.uid;
           // this.name = _db.object('users/' + auth.name);
         }
@@ -51,9 +51,11 @@ export class AuthService {
 
   sendMessageToFirebase(msg) { this.MESSAGES.push({ "text": msg}) }
 
-  getMessages() { return this.MESSAGES }
+  getMessages(convId) { return this._db.list(`p2p/${convId}/messages`) }
 
   getName(){  }
+
+  getUserObj() { return this._db.object(`users/${this.userKey}`, {preserveSnapshot:true}); }
 
   logout() {
     this._firebaseAuth.auth.signOut();

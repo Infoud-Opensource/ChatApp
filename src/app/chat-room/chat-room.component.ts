@@ -3,7 +3,8 @@ import { FirebaseListObservable, AngularFireDatabase } from 'angularfire2/databa
 import { AngularFireAuth, AUTH_PROVIDERS } from 'angularfire2/auth';
 import { AuthService } from '../services/auth/auth.service';
 import * as firebase from 'firebase/app';
- 
+import { ActivatedRoute } from '@angular/router';
+
 
 @Component({
   selector: 'app-chat-room',
@@ -14,26 +15,34 @@ export class ChatRoomComponent implements OnInit {
 
   msg;
   msgList;
-  name;
+  user;
   ownEmail: string;
   isOwnMessage: boolean;
   public messageString: string = "";
+  convId: any;
 
 
-  constructor(public _authService: AuthService, private _db: AngularFireDatabase) {
-    // _authService.authUser().subscribe (user => {
-    //   this.ownEmail = user.email;
-    //   this.isOwnMessage = this.ownEmail === this.userEmail;
-    // })
-    this.messageString = "Hello, how are you? :smile:";
-  }
-  ngOnInit() { 
-    this.msgList = this._authService.getMessages();
-    this.name = this._authService.getName();  
+  constructor(public _authService: AuthService, private _db: AngularFireDatabase, private _activateRoute: ActivatedRoute) {}
+  
+  ngOnInit() {
+    this._authService.getUserObj()
+    .subscribe(snapshot => { this.user = snapshot.val() })
+    this._activateRoute.params.subscribe(this.onRouteParam);
+    
   }
 
-  sendMessage() { 
-    this._authService.sendMessageToFirebase(this.msg);
+  sendMessage() {
+    if (!this.user || !this.msg) return
+
+    this.msgList.push({ 
+      "text": this.msg,
+      "sender": this.user.name
+    })
     this.msg = "";
+  }
+
+  onRouteParam = (data) => {
+    this.convId = data.convId
+    this.msgList = this._authService.getMessages(this.convId);
   }
 }

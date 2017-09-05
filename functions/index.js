@@ -17,22 +17,19 @@ exports.createUser = functions.auth.user().onCreate(event => {
       return admin.database().ref(`users/${value.uid}`).remove();
   })
 
-//   exports.p2p = functions.auth.user().onCreate(event => {
-//       const value = event.data;
-//       console.log(value);
-//       return admin.database().ref(`p2p/c1/users/${value.uid}`).update({
-//             uid1: value.uid,
-//             uid2: true
-//       })
-//   });
+  exports.p2pMap = functions.database.ref(`p2p/{convId}`).onCreate(event => {
+      const conv = event.data.val()
+      const convId = event.params.convId
 
-// exports.p2pMap = functions.auth.user().onCreate(event => {
-//     const value = event.data;
-//     console.log(value);
-//     return admin.database().ref(`p2pMap/${value.uid1}`).update({
-//         uid1:  c1
-//     })
-// })
+      const uid1 = conv.users[0]
+      const uid2 = conv.users[1]
+
+      const p2pMapUid1 = admin.database().ref(`p2pMap/${uid1}/${uid2}`).set(convId)
+      const p2pMapUid2 = admin.database().ref(`p2pMap/${uid2}/${uid1}`).set(convId)
+      return Promise.all([p2pMapUid1, p2pMapUid2]).then(results => {
+          console.log("All done")
+      })
+  })
 
 
 // exports.group = functions.auth.user().onCreate(event => { 
