@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth/auth.service';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 import { Router } from '@angular/router';
+import {FormControl} from '@angular/forms';
 
 @Component({
   selector: 'app-users',
@@ -14,6 +15,7 @@ export class UsersComponent implements OnInit {
   user;
 
   constructor(private _authService: AuthService,private _db: AngularFireDatabase, private _router: Router) {
+    
     this.users = this._db.list(`/users`);
     this._db.list(`/users`, { preserveSnapshot:true})
       .subscribe(snapshots => {
@@ -30,7 +32,7 @@ export class UsersComponent implements OnInit {
         console.log('user does not exist');
       }
       else{
-        console.log("user exists");          
+        console.log("user exists");        
         this._router.navigate(['../chatRoom']);  
       }
     })

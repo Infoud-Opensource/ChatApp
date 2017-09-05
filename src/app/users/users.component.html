@@ -1,6 +1,16 @@
 <p class="title">List Of Users </p>
+
+  <md-form-field>
+  <input mdInput placeholder="Search users" [mdAutocomplete]="auto">
+  </md-form-field>
+<md-autocomplete #auto="mdAutocomplete">
+  <md-option *ngFor="let item of users | async" [value]="item.name">
+    <a class="buttons" (click)="toChatRoom(uid)" md-button color="primary">{{ item.name}}</a>
+  </md-option>
+</md-autocomplete>
+
 <div class="user-list">
   <div *ngFor="let item of users | async">
-    <a class="buttons"  (click)="toChatRoom(uid)" md-button color="primary">{{ item.name}}</a>
+    <a class="buttons" (click)="toChatRoom(uid)" md-button color="primary">{{ item.name}}</a>
   </div>
 </div>

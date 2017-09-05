@@ -8,6 +8,8 @@ import { HttpModule } from '@angular/http';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AppRouterModule } from './app-router/app-router.module';
+import { MaterialModule } from "@angular/material";
+
 
 //angular material
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -17,7 +19,9 @@ import
   MdCardModule,
   MdButtonModule,
   MdToolbarModule,
-  MdSidenavModule
+  MdSidenavModule,
+  MdIconModule,
+  MdAutocompleteModule
 
 } from '@angular/material';
 import {EmojiPickerModule} from 'ng-emoji-picker';
@@ -68,7 +72,10 @@ import { FirebaseService } from './services/firebase/firebase.service';
     MdToolbarModule,
     MdSidenavModule,
     EmojiPickerModule,
-    Ng2EmojiModule.forRoot()
+    MdIconModule,
+    MdAutocompleteModule,
+    Ng2EmojiModule.forRoot(),
+    MaterialModule
   ],
   providers: [
     AuthService,
