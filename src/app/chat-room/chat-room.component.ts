@@ -16,9 +16,6 @@ export class ChatRoomComponent implements OnInit {
   msg;
   msgList;
   user;
-  ownEmail: string;
-  isOwnMessage: boolean;
-  public messageString: string = "";
   convId: any;
 
 
@@ -39,6 +36,19 @@ export class ChatRoomComponent implements OnInit {
       "sender": this.user.name
     })
     this.msg = "";
+  }
+
+  isYou(email) {
+    if(email == this._authService.currentUser)
+      return true;
+    else
+      return false;
+  }
+  isMe(email) {
+    if(email == this._authService.currentUser)
+      return false;
+    else
+      return true;
   }
 
   onRouteParam = (data) => {

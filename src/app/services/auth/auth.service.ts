@@ -13,7 +13,7 @@ export class AuthService {
   MESSAGES: FirebaseListObservable<any>;
   errorMsg: any;
   private isLoggedIn: Boolean;
-  private email: String;
+  public email: String;
   public userKey: string;
   currentUser = firebase.auth().currentUser;
 

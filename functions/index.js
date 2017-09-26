@@ -32,16 +32,16 @@ exports.createUser = functions.auth.user().onCreate(event => {
   })
 
 
-  exports.grpMap = functions.database.ref(`grp/{grpId}`).onCreate(event => {
-      const grp = event.data.val()
-      const grpId = event.params.grpId
+//   exports.grpMap = functions.database.ref(`grp/{grpId}`).onCreate(event => {
+//       const grp = event.data.val()
+//       const grpId = event.params.grpId
 
-      const uid1 = grp.users[0]
-      const uid2 = grp.users[1]
-      const uid3 = grp.users[2]
+//       const uid1 = grp.users[0]
+//       const uid2 = grp.users[1]
+//       const uid3 = grp.users[2]
 
-      const grpMapUid1 = admin.database().ref(`grpMap/${uid1}/${uid2}/${uid3}`).set(grpId)
-      return Promise.all([grpMapUid1]).then(results => {
-          console.log("All done")
-      })
-  })
+//       const grpMapUid1 = admin.database().ref(`grpMap/${uid1}/${uid2}/${uid3}`).set(grpId)
+//       return Promise.all([grpMapUid1]).then(results => {
+//           console.log("All done")
+//       })
+//   })

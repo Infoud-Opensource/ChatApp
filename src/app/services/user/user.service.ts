@@ -35,7 +35,6 @@ export class UserService {
   }
 
   redirectToChat(convId) {
-    console.log("in redirect   " + convId);
     this._router.navigate(['/home/chatRoom', convId]);
   }
 
