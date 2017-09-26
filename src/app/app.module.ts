@@ -45,6 +45,7 @@ import { AuthStateService } from './services/auth/auth-state.service';
 import { PrivateGuard } from './services/auth/private.guard';
 import { PublicGuard } from './services/auth/public.guard';
 import { FirebaseService } from './services/firebase/firebase.service';
+import { UserService } from './services/user/user.service';
 
 @NgModule({
   declarations: [
@@ -85,7 +86,8 @@ import { FirebaseService } from './services/firebase/firebase.service';
     AuthStateService,
     PrivateGuard,
     PublicGuard,
-    FirebaseService
+    FirebaseService,
+    UserService
   ],
   bootstrap: [AppComponent]
 })

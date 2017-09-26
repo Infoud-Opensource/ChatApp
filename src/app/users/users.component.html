@@ -1,6 +1,6 @@
+<button md-raised-button color="primary" (click)="groupChat()">Create Group</button>
+
 <p class="title">List Of Users </p>
-
-
 <div class="user-list">
   <div *ngFor="let item of users | async">
     <a *ngIf="currentUserUid != item.uid" class="buttons" (click)="toChatRoom(item.uid)" md-button color="primary">{{ item.name}}</a>
