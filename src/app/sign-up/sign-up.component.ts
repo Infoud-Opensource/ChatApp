@@ -32,6 +32,7 @@ export class SignUpComponent implements OnInit {
     .then(() => console.log("Success"))
     this.email = this.password = '';
     this.name = '';
+    
   }
 
   ngOnInit() {

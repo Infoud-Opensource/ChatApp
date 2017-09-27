@@ -23,8 +23,10 @@ import
   MdIconModule,
   MdAutocompleteModule,
   MdMenuModule,
-  MdFormFieldModule
+  MdFormFieldModule,
+  MdDialogModule
 } from '@angular/material';
+
 import {EmojiPickerModule} from 'ng-emoji-picker';
 import { Ng2EmojiModule } from 'ng2-emoji';
 
@@ -46,6 +48,8 @@ import { PrivateGuard } from './services/auth/private.guard';
 import { PublicGuard } from './services/auth/public.guard';
 import { FirebaseService } from './services/firebase/firebase.service';
 import { UserService } from './services/user/user.service';
+import { EmailVerificationComponent } from './email-verification/email-verification.component';
+import { UserListComponent } from './user-list/user-list.component';
 
 @NgModule({
   declarations: [
@@ -56,7 +60,12 @@ import { UserService } from './services/user/user.service';
     HomeComponent,
     IndexComponent,
     ErrorColorDirective,
-    UsersComponent
+    UsersComponent,
+    EmailVerificationComponent,
+    UserListComponent
+  ],
+  entryComponents: [
+    UserListComponent
   ],
   imports: [
     AppRouterModule,
@@ -79,7 +88,8 @@ import { UserService } from './services/user/user.service';
     MaterialModule,
     MdMenuModule,
     MdIconModule,
-    MdFormFieldModule
+    MdFormFieldModule,
+    MdDialogModule
   ],
   providers: [
     AuthService,

@@ -6,6 +6,7 @@ import { SignInComponent } from '../sign-in/sign-in.component';
 import { SignUpComponent } from '../sign-up/sign-up.component';
 import { ChatRoomComponent } from '../chat-room/chat-room.component';
 import { HomeComponent } from '../home/home.component';
+import { EmailVerificationComponent } from '../email-verification/email-verification.component';
 
 // auth gaurds
 import { PrivateGuard } from '../services/auth/private.guard';
@@ -19,6 +20,7 @@ const Routes: Routes = [
     children:[
   { path: 'signIn', component: SignInComponent },
   { path: 'signUp', component: SignUpComponent },
+  { path: 'emailVerification', component: EmailVerificationComponent },
   { path: '', redirectTo: 'signIn', pathMatch: 'full'},
   { path: '**', redirectTo: 'signIn' }
     ]

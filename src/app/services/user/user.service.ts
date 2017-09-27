@@ -50,12 +50,12 @@ export class UserService {
         this.redirectToGrpChat(grpId)
       }
       else {
-        let user_list = []
-        user_list.push(uid1)
-        user_list.push(uid2)
-        user_list.push(uid3)
+        let group_list = []
+        group_list.push(uid1)
+        group_list.push(uid2)
+        group_list.push(uid3)
         this._db.list('group', { preserveSnapshot: true })
-          .push({ "users": user_list })
+          .push({ "users": group_list })
           .then(newGrpSnapshot => {
             let grpId = newGrpSnapshot.val()
             this.redirectToGrpChat(grpId)
