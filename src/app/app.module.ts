@@ -23,7 +23,7 @@ import
   MdIconModule,
   MdAutocompleteModule,
   MdMenuModule,
-  MdFormFieldModule
+  MdFormFieldModule,
 } from '@angular/material';
 import {EmojiPickerModule} from 'ng-emoji-picker';
 import { Ng2EmojiModule } from 'ng2-emoji';
@@ -76,7 +76,7 @@ import { UserService } from './services/user/user.service';
     EmojiPickerModule,
     MdAutocompleteModule,
     Ng2EmojiModule.forRoot(),
-    MaterialModule,
+    MaterialModule.forRoot(),
     MdMenuModule,
     MdIconModule,
     MdFormFieldModule

@@ -15,6 +15,7 @@ export class UsersComponent implements OnInit {
   users: FirebaseListObservable<any>;
   user: any;
   currentUserUid: any;
+  stateCtrl: any;
 
   constructor(private _authService: AuthService, private _db: AngularFireDatabase, private _router: Router,private _userService: UserService) { }
 
