@@ -2,13 +2,16 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth/auth.service';
 import { UserService } from '../services/user/user.service';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
+import {MdDialog, MdDialogRef, MD_DIALOG_DATA} from '@angular/material';
 import { Router } from '@angular/router';
 import { FormControl } from '@angular/forms';
+import { UserListComponent } from '../user-list/user-list.component';
 
 @Component({
   selector: 'app-users',
   templateUrl: './users.component.html',
-  styleUrls: ['./users.component.css']
+  styleUrls: ['./users.component.css'],
+  entryComponents: [UserListComponent]
 })
 export class UsersComponent implements OnInit {
 
@@ -17,7 +20,7 @@ export class UsersComponent implements OnInit {
   currentUserUid: any;
   stateCtrl: any;
 
-  constructor(private _authService: AuthService, private _db: AngularFireDatabase, private _router: Router,private _userService: UserService) { }
+  constructor(private _authService: AuthService, private _db: AngularFireDatabase, private _router: Router,private _userService: UserService, public _dialog: MdDialog) { }
 
   toChatRoom(uid) {
     this._userService.toChatRoom(uid);
@@ -27,15 +30,15 @@ export class UsersComponent implements OnInit {
    this._userService.redirectToChat(convId);
   }
 
-  groupChat(gid){
-    this._userService.groupChat(gid);
-  }
-
-  private redirectToGrpChat(grpId){
-   this._userService.redirectToGrpChat(grpId);
+  groupChat(){
+    let dialogRef = this._dialog.open(UserListComponent, {
+      width: '250px',
+      height: '250px'
+    });
   }
 
   ngOnInit() {
+    this.user = this._userService.getSearchOptionObservable()
     this.users = this._db.list(`/users`);
     this.currentUserUid = this._authService.userKey;
   }

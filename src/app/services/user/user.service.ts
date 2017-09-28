@@ -2,9 +2,12 @@ import { Injectable } from '@angular/core';
 import { AuthService } from '../auth/auth.service';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 import { Router } from '@angular/router';
+import {FormControl} from '@angular/forms';
+
 
 @Injectable()
 export class UserService {
+  private stateCtrl: FormControl;
 
   constructor(private _authService: AuthService, private _db: AngularFireDatabase, private _router: Router) { }
 
@@ -50,12 +53,12 @@ export class UserService {
         this.redirectToGrpChat(grpId)
       }
       else {
-        let user_list = []
-        user_list.push(uid1)
-        user_list.push(uid2)
-        user_list.push(uid3)
+        let group_list = []
+        group_list.push(uid1)
+        group_list.push(uid2)
+        group_list.push(uid3)
         this._db.list('group', { preserveSnapshot: true })
-          .push({ "users": user_list })
+          .push({ "users": group_list })
           .then(newGrpSnapshot => {
             let grpId = newGrpSnapshot.val()
             this.redirectToGrpChat(grpId)
@@ -68,4 +71,12 @@ export class UserService {
     console.log("direct " + grpId);
     this._router.navigate(['/home/chatRoom', grpId]);
   }
+
+  getSearchOptionObservable(){
+    // return this.stateCtrl.valueChanges
+    //  .filter(name => name && name.length >= 3)
+    //     .flatMap(name => this.searchUser(name));
+  }
+
+  searchUser(name){ }
 }

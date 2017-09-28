@@ -36,7 +36,7 @@ export class AuthService {
   signup(email: string, password: string, name: string) {
     return this._firebaseAuth.auth.createUserWithEmailAndPassword(email, password)
       .then(value => { return this.sentNameToFirebase(value.uid, name) })
-      .then(() => { return this._router.navigate(['home']) })
+      .then(() => { return this._router.navigate(['public/emailVerification']) })
       .then(() => console.log("In succss"))
       .catch(err => console.error('Something went wrong:', err.message));
   }

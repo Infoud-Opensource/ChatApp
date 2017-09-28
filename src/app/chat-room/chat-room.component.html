@@ -11,7 +11,7 @@
 
     <div class="chat-text-box">
       <md-input-container class="input-field">
-        <input mdInput type="text" placeholder="Write Message Here.." [(ngModel)]="msg" (keyup.enter)="sendMessage()" [innerHTML]="messageString | emojis">
+        <input mdInput type="text" placeholder="Write Message Here.." [(ngModel)]="msg" (keyup.enter)="sendMessage()">
       </md-input-container>&nbsp;
       <button md-raised-button color="primary" (click)="sendMessage()">Send</button>
     </div>

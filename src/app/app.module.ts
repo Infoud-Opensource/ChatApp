@@ -8,8 +8,7 @@ import { HttpModule } from '@angular/http';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AppRouterModule } from './app-router/app-router.module';
-import { MaterialModule } from "@angular/material";
-
+import { MATERIAL_COMPATIBILITY_MODE,MATERIAL_SANITY_CHECKS} from '@angular/material';
 
 //angular material
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -20,13 +19,13 @@ import
   MdButtonModule,
   MdToolbarModule,
   MdSidenavModule,
-  MdIconModule,
+  MatIconModule,
   MdAutocompleteModule,
   MdMenuModule,
   MdFormFieldModule,
+  MdDialogModule
 } from '@angular/material';
-import {EmojiPickerModule} from 'ng-emoji-picker';
-import { Ng2EmojiModule } from 'ng2-emoji';
+
 
 //components
 import { AppComponent } from './app.component';
@@ -46,6 +45,8 @@ import { PrivateGuard } from './services/auth/private.guard';
 import { PublicGuard } from './services/auth/public.guard';
 import { FirebaseService } from './services/firebase/firebase.service';
 import { UserService } from './services/user/user.service';
+import { EmailVerificationComponent } from './email-verification/email-verification.component';
+import { UserListComponent } from './user-list/user-list.component';
 
 @NgModule({
   declarations: [
@@ -56,7 +57,12 @@ import { UserService } from './services/user/user.service';
     HomeComponent,
     IndexComponent,
     ErrorColorDirective,
-    UsersComponent
+    UsersComponent,
+    EmailVerificationComponent,
+    UserListComponent
+  ],
+  entryComponents: [
+    UserListComponent
   ],
   imports: [
     AppRouterModule,
@@ -73,13 +79,11 @@ import { UserService } from './services/user/user.service';
     MdButtonModule,
     MdToolbarModule,
     MdSidenavModule,
-    EmojiPickerModule,
     MdAutocompleteModule,
-    Ng2EmojiModule.forRoot(),
-    MaterialModule.forRoot(),
     MdMenuModule,
-    MdIconModule,
-    MdFormFieldModule
+    MatIconModule,
+    MdFormFieldModule,
+    MdDialogModule
   ],
   providers: [
     AuthService,

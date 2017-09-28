@@ -1,13 +1,19 @@
+<div class="buttons">
 <button md-raised-button color="primary" (click)="groupChat()">Create Group</button>
+</div>
 
 <p class="title">List Of Users </p>
-<md-input-container>  
+<md-input-container> 
     <input mdInput placeholder="Search">
 </md-input-container>
-  <md-icon color="accent" class="search-icon">search</md-icon>
+     <div *ngFor="let item of users | async">
+    <a *ngIf="currentUserUid != item.uid" class="buttons" (click)="toChatRoom(item.uid)" md-button color="primary">{{ item.name}}</a>
+  </div>
 
-<div class="user-list">
+  
+
+<!--<div class="user-list">
   <div *ngFor="let item of users | async">
     <a *ngIf="currentUserUid != item.uid" class="buttons" (click)="toChatRoom(item.uid)" md-button color="primary">{{ item.name}}</a>
   </div>
-</div>
+</div>-->
