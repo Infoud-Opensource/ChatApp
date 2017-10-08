@@ -13,19 +13,21 @@ export class UserListComponent implements OnInit {
   users: FirebaseListObservable<any>;
   user: any;
   currentUserUid: any;
+  name: any;
+  userKey: any;
 
   constructor(private _authService: AuthService, private _db: AngularFireDatabase, private _userService: UserService) { }
-
-  toChatRoom(uid) {
-    this._userService.toChatRoom(uid);
+  
+  getUserId(){
+    
   }
   
-  groupChat(gid){
-    this._userService.groupChat(gid);
+  groupChat(){
+    this._userService.groupChat();
   }
 
   private redirectToGrpChat(grpId){
-    this._userService.redirectToGrpChat(grpId);
+    // this._userService.redirectToGrpChat(grpId);
    }
 
   ngOnInit() {

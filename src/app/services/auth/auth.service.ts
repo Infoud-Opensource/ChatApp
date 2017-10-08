@@ -36,14 +36,19 @@ export class AuthService {
   signup(email: string, password: string, name: string) {
     return this._firebaseAuth.auth.createUserWithEmailAndPassword(email, password)
       .then(value => { return this.sentNameToFirebase(value.uid, name) })
-      .then(() => { return this._router.navigate(['public/emailVerification']) })
+      .then(() => { return this._router.navigate(['./signIn']) })
       .then(() => console.log("In succss"))
       .catch(err => console.error('Something went wrong:', err.message));
   }
 
   login(email: string, password: string) {
     return this._firebaseAuth.auth.signInWithEmailAndPassword(email, password)
-      .then(value => this._router.navigate(['/home']))
+      .then(value => {
+        // value.sendEmailVerification()
+        // if (!value.emailVerified) return // Server Error
+
+        this._router.navigate(['/home'])
+      })
       .catch(err => this.errorMsg = err.message);
   }
 
@@ -53,7 +58,9 @@ export class AuthService {
 
   getMessages(convId) { return this._db.list(`p2p/${convId}/messages`) }
 
-  getName() { }
+
+  getName(){ return this._db.object(`users/${name}`)}
+
 
   getUserObj() { return this._db.object(`users/${this.userKey}`, { preserveSnapshot: true }); }
 
