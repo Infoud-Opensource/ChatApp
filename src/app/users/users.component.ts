@@ -31,8 +31,8 @@ export class UsersComponent implements OnInit {
 
   groupChat(){
     let dialogRef = this._dialog.open(UserListComponent, {
-      width: '250px',
-      height: '250px'
+      width: '500px',
+      height: '500px'
     });
   }
 
