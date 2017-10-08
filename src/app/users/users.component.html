@@ -3,12 +3,20 @@
 </div>
 
 <p class="title">List Of Users </p>
-<md-input-container> 
-    <input mdInput placeholder="Search">
-</md-input-container>
-     <div *ngFor="let item of users | async">
+<md-form-field floatPlaceholder="never">
+      <input mdInput #filter placeholder="Search" [formControl]="myControl" [matAutocomplete]="auto">
+      <md-autocomplete #auto="mdAutocomplete">
+        <md-option *ngFor="let item of users | async">
+          <a *ngIf="currentUserUid != item.uid" class="buttons" (click)="toChatRoom(item.uid)" md-button color="primary">{{ item.name}}</a>
+        </md-option>
+      </md-autocomplete>
+</md-form-field>
+
+
+
+     <!--<div *ngFor="let item of users | async">
     <a *ngIf="currentUserUid != item.uid" class="buttons" (click)="toChatRoom(item.uid)" md-button color="primary">{{ item.name}}</a>
-  </div>
+  </div>-->
 
   
 

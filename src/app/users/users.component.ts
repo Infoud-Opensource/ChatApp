@@ -4,7 +4,7 @@ import { UserService } from '../services/user/user.service';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 import {MdDialog, MdDialogRef, MD_DIALOG_DATA} from '@angular/material';
 import { Router } from '@angular/router';
-import { FormControl } from '@angular/forms';
+import {FormControl} from '@angular/forms';
 import { UserListComponent } from '../user-list/user-list.component';
 
 @Component({
@@ -14,6 +14,8 @@ import { UserListComponent } from '../user-list/user-list.component';
   entryComponents: [UserListComponent]
 })
 export class UsersComponent implements OnInit {
+
+   myControl: FormControl = new FormControl();
 
   users: FirebaseListObservable<any>;
   user: any;

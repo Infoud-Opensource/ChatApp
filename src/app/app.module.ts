@@ -8,7 +8,6 @@ import { HttpModule } from '@angular/http';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AppRouterModule } from './app-router/app-router.module';
-import { MATERIAL_COMPATIBILITY_MODE,MATERIAL_SANITY_CHECKS} from '@angular/material';
 
 //angular material
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -23,7 +22,8 @@ import
   MdAutocompleteModule,
   MdMenuModule,
   MdFormFieldModule,
-  MdDialogModule
+  MdDialogModule,
+  MdSelectModule
 } from '@angular/material';
 
 
@@ -83,7 +83,8 @@ import { UserListComponent } from './user-list/user-list.component';
     MdMenuModule,
     MatIconModule,
     MdFormFieldModule,
-    MdDialogModule
+    MdDialogModule,
+    MdSelectModule
   ],
   providers: [
     AuthService,

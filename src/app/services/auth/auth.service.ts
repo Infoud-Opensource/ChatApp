@@ -20,7 +20,7 @@ export class AuthService {
   constructor(private _firebaseAuth: AngularFireAuth, public _router: Router, private _db: AngularFireDatabase) {
     this._firebaseAuth.authState.subscribe(
       (auth) => {
-        if (auth != null){
+        if (auth != null) {
           this.user = _db.object(`users/${auth.uid}`);
           this.userKey = auth.uid;
           // this.name = _db.object('users/' + auth.name);
@@ -49,13 +49,13 @@ export class AuthService {
 
   sentNameToFirebase(uid, name) { return this._db.object(`users/${uid}`).update({ name: name }) }
 
-  sendMessageToFirebase(msg) { this.MESSAGES.push({ "text": msg}) }
+  sendMessageToFirebase(msg) { this.MESSAGES.push({ "text": msg }) }
 
   getMessages(convId) { return this._db.list(`p2p/${convId}/messages`) }
 
-  getName(){  }
+  getName() { }
 
-  getUserObj() { return this._db.object(`users/${this.userKey}`, {preserveSnapshot:true}); }
+  getUserObj() { return this._db.object(`users/${this.userKey}`, { preserveSnapshot: true }); }
 
   logout() {
     this._firebaseAuth.auth.signOut();
@@ -63,10 +63,11 @@ export class AuthService {
   }
 
   deleteUser() {
-    this.currentUser.delete().then(function(){
+    this._firebaseAuth.auth.currentUser.delete().then(function () {
+    // this.currentUser.delete().then(function () {
       console.log("user deleted");
       this._router.navigate(['/signIn'])
-    }).catch(function(error){
+    }).catch(function (error) {
       console.log(error)
     });
   }
