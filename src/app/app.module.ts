@@ -13,17 +13,17 @@ import { AppRouterModule } from './app-router/app-router.module';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import 
 {
-  MdInputModule,
-  MdCardModule,
-  MdButtonModule,
-  MdToolbarModule,
-  MdSidenavModule,
+  MatInputModule,
+  MatCardModule,
+  MatButtonModule,
+  MatToolbarModule,
+  MatSidenavModule,
   MatIconModule,
-  MdAutocompleteModule,
-  MdMenuModule,
-  MdFormFieldModule,
-  MdDialogModule,
-  MdSelectModule
+  MatAutocompleteModule,
+  MatMenuModule,
+  MatFormFieldModule,
+  MatDialogModule,
+  MatSelectModule
 } from '@angular/material';
 
 
@@ -74,17 +74,17 @@ import { UserListComponent } from './user-list/user-list.component';
     ReactiveFormsModule,
     BrowserAnimationsModule,
     HttpModule,
-    MdInputModule,
-    MdCardModule,
-    MdButtonModule,
-    MdToolbarModule,
-    MdSidenavModule,
-    MdAutocompleteModule,
-    MdMenuModule,
+    MatInputModule,
+    MatCardModule,
+    MatButtonModule,
+    MatToolbarModule,
+    MatSidenavModule,
+    MatAutocompleteModule,
+    MatMenuModule,
     MatIconModule,
-    MdFormFieldModule,
-    MdDialogModule,
-    MdSelectModule
+    MatFormFieldModule,
+    MatDialogModule,
+    MatSelectModule
   ],
   providers: [
     AuthService,

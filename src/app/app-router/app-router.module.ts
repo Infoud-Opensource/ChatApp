@@ -21,7 +21,7 @@ const Routes: Routes = [
   { path: 'signIn', component: SignInComponent },
   { path: 'signUp', component: SignUpComponent },
   { path: 'emailVerification', component: EmailVerificationComponent },
-  { path: '', redirectTo: 'signIn', pathMatch: 'full'},
+  { path: '', redirectTo: 'signIn', pathmatch: 'full'},
   { path: '**', redirectTo: 'signIn' }
     ]
   },
@@ -31,11 +31,11 @@ const Routes: Routes = [
     canActivateChild: [PrivateGuard],
     children: [
       { path: 'chatRoom/:convId', component: ChatRoomComponent },
-      { path: '', redirectTo: 'home', pathMatch: 'full'},
+      { path: '', redirectTo: 'home', pathmatch: 'full'},
       { path: '**', redirectTo: 'home' }
     ]
   },
-  { path: '', redirectTo: 'public', pathMatch: 'full' },
+  { path: '', redirectTo: 'public', pathmatch: 'full' },
   { path: '**', redirectTo: 'public' }
 ];
 
