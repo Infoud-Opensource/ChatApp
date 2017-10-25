@@ -1,23 +1,23 @@
-<md-sidenav-container fullscreen>
-    <md-toolbar color="primary" class="button">
+<mat-sidenav-container fullscreen>
+    <mat-toolbar color="primary" class="button">
 
-            <button md-mini-fab [mdMenuTriggerFor]="menu">
-                <md-icon>more_vert</md-icon>
+            <button mat-mini-fab [matMenuTriggerFor]="menu">
+                <mat-icon>more_vert</mat-icon>
             </button>
-            <md-menu #menu="mdMenu">
-              <button md-menu-item (click)="logout()">Logout</button>
-              <button md-menu-item (click) = "deleteUser()">Delete Account</button>
-            </md-menu>
-    </md-toolbar>
-    <md-sidenav #sidenav align="right" mode="side" opened="true" disableClose="true">
-        <md-toolbar color="primary"></md-toolbar>
+            <mat-menu #menu="matMenu">
+              <button mat-menu-item (click)="logout()">Logout</button>
+              <button mat-menu-item (click) = "deleteUser()">Delete Account</button>
+            </mat-menu>
+    </mat-toolbar>
+    <mat-sidenav #sidenav align="right" mode="side" opened="true" disableClose="true">
+        <mat-toolbar color="primary"></mat-toolbar>
         <div>
             <app-users></app-users>
         </div>
-    </md-sidenav>
+    </mat-sidenav>
 
     <div>
         <router-outlet></router-outlet>
     </div>
 
-</md-sidenav-container>
+</mat-sidenav-container>

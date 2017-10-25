@@ -1,34 +1,34 @@
 <div class="main">
   <form [formGroup]="signUpForm" (ngSubmit)="signup($event)">
-    <md-card class="card">
-      <md-card-header>
-        <md-card-title>Sign Up</md-card-title>
-      </md-card-header>
-      <md-card-content>
+    <mat-card class="card">
+      <mat-card-header>
+        <mat-card-title>Sign Up</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
 
-          <md-input-container class="input-field">
-              <input mdInput type="text" [(ngModel)]="name" placeholder="Name" formControlName="name">
+          <mat-input-container class="input-field">
+              <input matInput type="text" [(ngModel)]="name" placeholder="Name" formControlName="name">
               <div class="error" Error-color *ngIf="(signUpForm.controls['name'].dirty || isSubmitted) && signUpForm.controls['name'].invalid">Enter Your Name</div>
-            </md-input-container>
+            </mat-input-container>
 
-        <md-input-container class="input-field">
-          <input mdInput type="text" [(ngModel)]="email" placeholder="Email" formControlName="email">
+        <mat-input-container class="input-field">
+          <input matInput type="text" [(ngModel)]="email" placeholder="Email" formControlName="email">
           <div class="error" Error-color *ngIf="(signUpForm.controls['email'].dirty || isSubmitted) && signUpForm.controls['email'].invalid">
             <span *ngIf="signUpForm.controls['email'].errors['required']">Enter Your Email</span>
             <span *ngIf="signUpForm.controls['email'].errors['pattern']">Invalid Email</span>
           </div>
-        </md-input-container><br>
+        </mat-input-container><br>
 
-        <md-input-container class="input-field">
-          <input mdInput type="password" [(ngModel)]="password" placeholder="Password" formControlName="password">
+        <mat-input-container class="input-field">
+          <input matInput type="password" [(ngModel)]="password" placeholder="Password" formControlName="password">
           <div class="error" Error-color *ngIf="(signUpForm.controls['password'].dirty || isSubmitted) && signUpForm.controls['password'].invalid">Enter Your Password</div>
-        </md-input-container>
+        </mat-input-container>
 
-      </md-card-content>
-      <md-card-actions class="action">
-        <button class="submit" md-raised-button color="primary" [disabled]="!email || !password">Signup</button><br>
-        <a class="signUpLink" color="accent" md-button [routerLink]="['./signIn']">Back To Sign In</a>
-      </md-card-actions>
-    </md-card>
+      </mat-card-content>
+      <mat-card-actions class="action">
+        <button class="submit" mat-raised-button color="primary" [disabled]="!email || !password">Signup</button><br>
+        <a class="signUpLink" color="accent" mat-button [routerLink]="['./signIn']">Back To Sign In</a>
+      </mat-card-actions>
+    </mat-card>
   </form>
 </div>

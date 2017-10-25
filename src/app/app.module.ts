@@ -3,9 +3,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { environment } from 'environments/environment';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { AngularFireModule,  } from 'angularfire2';
+import { AngularFireModule  } from 'angularfire2';
 import { HttpModule } from '@angular/http';
-import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFireDatabaseModule, AngularFireDatabase } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AppRouterModule } from './app-router/app-router.module';
 
@@ -13,17 +13,17 @@ import { AppRouterModule } from './app-router/app-router.module';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import 
 {
-  MdInputModule,
-  MdCardModule,
-  MdButtonModule,
-  MdToolbarModule,
-  MdSidenavModule,
+  MatInputModule,
+  MatCardModule,
+  MatButtonModule,
+  MatToolbarModule,
+  MatSidenavModule,
   MatIconModule,
-  MdAutocompleteModule,
-  MdMenuModule,
-  MdFormFieldModule,
-  MdDialogModule,
-  MdSelectModule
+  MatAutocompleteModule,
+  MatMenuModule,
+  MatFormFieldModule,
+  MatDialogModule,
+  MatSelectModule
 } from '@angular/material';
 
 
@@ -74,19 +74,20 @@ import { UserListComponent } from './user-list/user-list.component';
     ReactiveFormsModule,
     BrowserAnimationsModule,
     HttpModule,
-    MdInputModule,
-    MdCardModule,
-    MdButtonModule,
-    MdToolbarModule,
-    MdSidenavModule,
-    MdAutocompleteModule,
-    MdMenuModule,
+    MatInputModule,
+    MatCardModule,
+    MatButtonModule,
+    MatToolbarModule,
+    MatSidenavModule,
+    MatAutocompleteModule,
+    MatMenuModule,
     MatIconModule,
-    MdFormFieldModule,
-    MdDialogModule,
-    MdSelectModule
+    MatFormFieldModule,
+    MatDialogModule,
+    MatSelectModule
   ],
   providers: [
+    AngularFireDatabase,
     AuthService,
     AuthStateService,
     PrivateGuard,

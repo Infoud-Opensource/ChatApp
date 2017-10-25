@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FirebaseListObservable, AngularFireDatabase } from 'angularfire2/database';
+import { FirebaseListObservable, AngularFireDatabase } from 'angularfire2/database-deprecated';
 import { AngularFireAuth, AUTH_PROVIDERS } from 'angularfire2/auth';
 import { AuthService } from '../services/auth/auth.service';
 import * as firebase from 'firebase/app';

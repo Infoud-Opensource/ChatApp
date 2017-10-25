@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AuthService } from '../auth/auth.service';
-import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
+import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database-deprecated';
 import { Router } from '@angular/router';
 import {FormControl} from '@angular/forms';
 

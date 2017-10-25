@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth/auth.service';
 import { UserService } from '../services/user/user.service';
-import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
-import {MdDialog, MdDialogRef, MD_DIALOG_DATA} from '@angular/material';
+import { AngularFireDatabase,FirebaseListObservable} from 'angularfire2/database-deprecated';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import { Router } from '@angular/router';
 import {FormControl} from '@angular/forms';
 import { UserListComponent } from '../user-list/user-list.component';
@@ -22,7 +22,7 @@ export class UsersComponent implements OnInit {
   currentUserUid: any;
   stateCtrl: any;
 
-  constructor(private _authService: AuthService, private _db: AngularFireDatabase, private _router: Router,private _userService: UserService, public _dialog: MdDialog) { }
+  constructor(private _authService: AuthService, private _db: AngularFireDatabase, private _router: Router,private _userService: UserService, public _dialog: MatDialog) { }
 
   toChatRoom(uid) {
     this._userService.toChatRoom(uid);

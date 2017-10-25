@@ -1,12 +1,12 @@
 <div class="user-list">
   <form>
-    <md-form-field>
-      <input mdInput placeholder="Enter Group Name" [(ngModel)]="name" name="something">
-    </md-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Enter Group Name" [(ngModel)]="name" name="something">
+    </mat-form-field>
   </form>
   <p class="title">Select Names </p>
   <div *ngFor="let item of users | async">
-    <md-checkbox *ngIf="currentUserUid != item.uid" class="buttons" (click)="getUserId()" md-button color="primary">{{ item.name}}</md-checkbox>
+    <mat-checkbox *ngIf="currentUserUid != item.uid" class="buttons" (click)="getUserId()" mat-button color="primary">{{ item.name}}</mat-checkbox>
   </div><br>
-  <button md-raised-button color="primary" (click)="groupChat()">Create Group</button>
+  <button mat-raised-button color="primary" (click)="groupChat()">Create Group</button>
 </div>
