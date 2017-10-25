@@ -1,29 +1,28 @@
-<div class="main">
-  <form [formGroup]="signInForm" (ngSubmit)="login($event)">
-    <mat-card class="card">
-      <mat-card-header>
-        <mat-card-title>Sign In</mat-card-title>
-      </mat-card-header>
-      <mat-card-content>
+<h2>Sign in Form</h2>
+<form [formGroup]="signInForm">
+<mat-form-field class="example-full-width">
+    <input [(ngModel)]="email" matInput placeholder="Enter your user name" [(ngModel)]="email" formControlName="email" >
+    <mat-error *ngIf="signInForm.controls['email'].hasError('pattern')">
+        Please enter a valid email address
+     </mat-error>
+    <mat-error *ngIf="signInForm.controls['email'].hasError('required')">
+        Email is <strong>required</strong>
+     </mat-error>
+</mat-form-field>
 
-        <mat-input-container class="input-field">
-          <input matInput type="text" [(ngModel)]="email" placeholder="email" formControlName="email">
-          <div class="error" Error-color *ngIf="(signInForm.controls['email'].dirty || isSubmitted) && signInForm.controls['email'].invalid">
-            <span *ngIf="signInForm.controls['email'].errors['required']">Enter Your Email</span>
-            <span *ngIf="signInForm.controls['email'].errors['pattern']">Invalid Email</span>
-          </div>
-        </mat-input-container><br>
+<mat-input-container>
+    <input [(ngModel)]="password" matInput placeholder="Password" type="password" [(ngModel)]="password" formControlName="pass">
+    <mat-error *ngIf="signInForm.controls['pass'].hasError('required')">
+        Password <strong>required</strong>
+     </mat-error>
+</mat-input-container>
 
-        <mat-input-container class="input-field">
-          <input matInput type="password" [(ngModel)]="password" placeholder="password" formControlName="password">
-          <div class="error" Error-color *ngIf="(signInForm.controls['password'].dirty || isSubmitted) && signInForm.controls['password'].invalid">Enter Your Password</div>
-        </mat-input-container>
-        
-      </mat-card-content>
-      <mat-card-actions class="action">
-        <button class="submit" mat-raised-button color="primary" [disabled]="!email || !password">Login</button><br>
-        <a class="signUpLink" color="accent" mat-button [routerLink]="['../signUp']">Dont have an Account? Click here</a>
-      </mat-card-actions>
-    </mat-card>
-  </form>
+<div class="link">
+    <a mat-button routerLink="/register">Register</a>
 </div>
+
+<br>
+<button (click)="login()" color="primary" mat-raised-button>Submit</button>
+<br>
+<span><h4>{{errorMsg}}</h4></span>
+</form>

@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../services/auth/auth.service';
-import { AngularFireAuth } from 'angularfire2/auth';
-import * as firebase from 'firebase/app';
-import { Observable } from 'rxjs/Observable';
-import { FormGroup, FormControl, Validators, FormBuilder }  from '@angular/forms';
+import{ FormGroup,FormControl,Validators} from '@angular/forms';
+import { AuthService } from '../services/auth.service';
+
+
+// const EMAIL_match = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
 @Component({
   selector: 'app-sign-up',
@@ -12,27 +12,26 @@ import { FormGroup, FormControl, Validators, FormBuilder }  from '@angular/forms
 })
 export class SignUpComponent implements OnInit {
 
+  public errorMsg = '';
+  isSubmitted = false;
+  name: string;
   email: string;
   password: string;
-  name: string;
-  user: any;
-  isSubmitted = false;
 
-   signUpForm = this._fb.group({
-    name: ["", [Validators.required]],
-    email: ["", [Validators.required, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$')]],
-    password: ["", [Validators.required]]
+  registerForm = new FormGroup({
+    name:new FormControl('',Validators.required),
+    email:new FormControl('', [Validators.required,Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$')]),
+    pass:new FormControl('',Validators.required)
   });
 
-  constructor(public _authService: AuthService, private _fb: FormBuilder) { }
+  constructor(public authService: AuthService) { }
 
-  signup($event) {
+  signup(event) {
     this.isSubmitted = true;
-    this._authService.signup(this.email, this.password, this.name)
+    this.authService.signup(this.email, this.password, this.name)
     .then(() => console.log("Success"))
     this.email = this.password = '';
     this.name = '';
-    
   }
 
   ngOnInit() {
