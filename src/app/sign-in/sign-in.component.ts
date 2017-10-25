@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../services/auth/auth.service';
-import { AngularFireAuth } from 'angularfire2/auth';
-import * as firebase from 'firebase/app';
-import { Observable } from 'rxjs/Observable';
-import { FormGroup, FormControl, Validators, FormBuilder }  from '@angular/forms';
+import{ FormGroup,FormControl,Validators} from '@angular/forms';
+import { AuthService } from '../services/auth.service';
+
+// const EMAIL_match = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
 @Component({
   selector: 'app-sign-in',
@@ -14,22 +13,18 @@ export class SignInComponent implements OnInit {
 
   email: string;
   password: string;
-  name: string;
-  user: any;
-  isSubmitted = false;
+  public errorMsg = '';
 
-  signInForm = this._fb.group({
-    email: ["", [Validators.required, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$')]],
-    password: ["", [Validators.required]]
-
+  signInForm = new FormGroup({
+    email:new FormControl('', [Validators.required,Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$')]),
+    pass:new FormControl('',Validators.required)
   });
 
-  constructor(public _authService: AuthService, private _fb: FormBuilder) { }
 
-  login($event) {
-    $event.preventDefault();
-    this.isSubmitted = true;
-    this._authService.login(this.email, this.password);
+  constructor(public authService: AuthService) { }
+
+  login() {
+    this.authService.login(this.email, this.password);
     this.email = this.password = '';    
   }
 

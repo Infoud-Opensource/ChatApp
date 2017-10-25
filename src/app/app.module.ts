@@ -31,42 +31,22 @@ import
 import { AppComponent } from './app.component';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
-import { ChatRoomComponent } from './chat-room/chat-room.component';
 import { HomeComponent } from './home/home.component';
-import { IndexComponent } from './index/index.component';
-import { UsersComponent } from './users/users.component';
 
 
 //services
-import { AuthService } from './services/auth/auth.service';
-import { ErrorColorDirective } from './error-color.directive';
-import { AuthStateService } from './services/auth/auth-state.service';
-import { PrivateGuard } from './services/auth/private.guard';
-import { PublicGuard } from './services/auth/public.guard';
-import { FirebaseService } from './services/firebase/firebase.service';
-import { UserService } from './services/user/user.service';
-import { EmailVerificationComponent } from './email-verification/email-verification.component';
-import { UserListComponent } from './user-list/user-list.component';
+import { AuthService } from './services/auth.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     SignInComponent,
     SignUpComponent,
-    ChatRoomComponent,
     HomeComponent,
-    IndexComponent,
-    ErrorColorDirective,
-    UsersComponent,
-    EmailVerificationComponent,
-    UserListComponent
-  ],
-  entryComponents: [
-    UserListComponent
   ],
   imports: [
     AppRouterModule,
-    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
     AngularFireDatabaseModule,
     BrowserModule,
@@ -89,11 +69,6 @@ import { UserListComponent } from './user-list/user-list.component';
   providers: [
     AngularFireDatabase,
     AuthService,
-    AuthStateService,
-    PrivateGuard,
-    PublicGuard,
-    FirebaseService,
-    UserService
   ],
   bootstrap: [AppComponent]
 })
