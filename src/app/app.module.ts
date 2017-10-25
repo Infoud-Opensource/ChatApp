@@ -3,9 +3,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { environment } from 'environments/environment';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { AngularFireModule,  } from 'angularfire2';
+import { AngularFireModule  } from 'angularfire2';
 import { HttpModule } from '@angular/http';
-import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFireDatabaseModule, AngularFireDatabase } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AppRouterModule } from './app-router/app-router.module';
 
@@ -67,6 +67,7 @@ import { AuthService } from './services/auth.service';
     MatSelectModule
   ],
   providers: [
+    AngularFireDatabase,
     AuthService,
   ],
   bootstrap: [AppComponent]

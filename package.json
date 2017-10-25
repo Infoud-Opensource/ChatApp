@@ -25,12 +25,13 @@
     "@angular/platform-browser-dynamic": "latest",
     "@angular/platform-server": "latest",
     "@angular/router": "latest",
+    "@ngrx/store": "^4.0.3",
     "angularfire2": "latest",
-    "core-js": "^2.4.1",
+    "core-js": "latest",
     "firebase": "latest",
     "rxjs": "latest",
     "typescript": "latest",
-    "zone.js": "^0.8.4"
+    "zone.js": "latest"
   },
   "devDependencies": {
     "@angular/cli": "latest",
