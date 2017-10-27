@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import{ FormGroup,FormControl,Validators} from '@angular/forms';
-import { AuthService } from '../services/auth.service';
+import { AuthService } from '../services/auth/auth.service';
 
 
 // const EMAIL_match = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;

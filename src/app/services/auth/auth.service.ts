@@ -32,11 +32,21 @@ export class AuthService {
       });
   }
 
+  
   logout() {
-    this.firebaseAuth
-      .auth
-      .signOut();
+    this.firebaseAuth.auth.signOut();
+    this._router.navigate(['/signIn']);
   }
+
+
+   isLoggedIn(){ 
+    // if (!this.authenticationStateObservable) {
+    //   this.authenticationStateObservable = this.authenticationState.asObservable() 
+    // }
+    return this.getAuthState().map(user => user ? true : false);
+  }
+
+  getAuthState() { return this.firebaseAuth.authState }
 
 
 }

@@ -32,10 +32,13 @@ import { AppComponent } from './app.component';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { HomeComponent } from './home/home.component';
+import { IndexComponent } from './index/index.component';
 
 
 //services
-import { AuthService } from './services/auth.service';
+import { AuthService } from './services/auth/auth.service';
+import { PrivateGuardService } from './services/guards/private-guard.service';
+import { PublicGuardService } from './services/guards/public-guard.service';
 
 @NgModule({
   declarations: [
@@ -43,6 +46,7 @@ import { AuthService } from './services/auth.service';
     SignInComponent,
     SignUpComponent,
     HomeComponent,
+    IndexComponent,
   ],
   imports: [
     AppRouterModule,
@@ -69,6 +73,8 @@ import { AuthService } from './services/auth.service';
   providers: [
     AngularFireDatabase,
     AuthService,
+    PrivateGuardService,
+    PublicGuardService
   ],
   bootstrap: [AppComponent]
 })
