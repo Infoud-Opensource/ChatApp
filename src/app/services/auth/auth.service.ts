@@ -16,8 +16,8 @@ export class AuthService {
   signup(email: string, password: string, name: string) {
     return this.firebaseAuth.auth.createUserWithEmailAndPassword(email, password)
       // .then(value => { return this.sentNameToFirebase(value.uid, name) })
-      .then(() => { return this._router.navigate(['./signIn']) })
       .then(() => console.log("In succss"))
+      .then(() => this._router.navigate(['../signIn']))
       .catch(err => console.error('Something went wrong:', err.message));
   }
 
@@ -25,7 +25,7 @@ export class AuthService {
     return this.firebaseAuth.auth.signInWithEmailAndPassword(email, password)
       .then(value => {
         console.log('Nice, it worked!');
-        this._router.navigate(['./home'])
+        this._router.navigate(['../home'])
       })
       .catch(err => {
         console.log('Something went wrong:',err.message);

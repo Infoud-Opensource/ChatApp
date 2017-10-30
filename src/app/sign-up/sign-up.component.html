@@ -1,36 +1,40 @@
-<h2>Registeration</h2>
-<form [formGroup]="registerForm" (ngSubmit)="signup($event)">
-<div class="form-group">
-    <mat-form-field class="example-full-width">
-    <input matInput placeholder="Full Name" [(ngModel)]="name" class="FormControl" formControlName="name">
-    <mat-error *ngIf="registerForm.controls['name'].hasError('required')">
-    Fullname is <strong> required</strong>
-    </mat-error>
-    </mat-form-field>
+<div class="top-section"></div>
+<div class="public-main">
+    <mat-card class="public-card">
+        <h2>Sign Up</h2>
+        <form [formGroup]="registerForm" (ngSubmit)="signup($event)">
+
+                <mat-form-field class="input-field">
+                    <input matInput placeholder="Full Name" [(ngModel)]="name" class="FormControl" formControlName="name">
+                    <mat-error *ngIf="registerForm.controls['name'].hasError('required')">
+                        Fullname is <strong> required</strong>
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field class="input-field">
+                    <input matInput placeholder="Enter Email" [(ngModel)]="email" class="FormControl" formControlName="email">
+                    <mat-error *ngIf="registerForm.controls['email'].hasError('pattern')">
+                        Please enter a valid email address
+                    </mat-error>
+                    <mat-error *ngIf="registerForm.controls['email'].hasError('required')">
+                        Email is <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>
+
+
+            <mat-form-field class="input-field">
+                <input matInput placeholder="Enter Password" [(ngModel)]="password" type="password" class="FormControl" formControlName="pass">
+                <mat-error *ngIf="registerForm.controls['pass'].hasError('required')">
+                    Password <strong>required</strong>
+                </mat-error>
+            </mat-form-field>
+            
+            <mat-card-actions>
+                <button color="accent" type="submit" mat-raised-button>Submit</button><br>
+                <button color="primary" mat-button [routerLink]="['../signIn']">Back to SignIn</button>
+                <button color="warn" mat-button [routerLink]="['']">Forgot Password?</button>
+            </mat-card-actions>
+
+        </form>
+    </mat-card>
 </div>
-
-<div class="form-group">
-    <mat-form-field class="example-full-width">
-    <input matInput placeholder="Email" [(ngModel)]="email" class="FormControl" formControlName="email">
-    <mat-error *ngIf="registerForm.controls['email'].hasError('pattern')">
-    Please enter a valid email address
-    </mat-error>
-    <mat-error *ngIf="registerForm.controls['email'].hasError('required')">
-    Email is <strong>required</strong>
-    </mat-error>
-    </mat-form-field>
- </div>
-
-
-    <mat-input-container>
-    <input matInput placeholder="Password" [(ngModel)]="password" type="password" class="FormControl" formControlName="pass">
-    <mat-error *ngIf="registerForm.controls['pass'].hasError('required')">
-            Password <strong>required</strong>
-     </mat-error>
-    </mat-input-container>
-    <!-- <button (click)="signup()" type="submit">
-        Login
-      </button> -->
-<button color="primary"  type="submit" mat-raised-button>Submit</button> 
-
-</form>
