@@ -3,7 +3,7 @@
     "users": {
       ".read": "auth != null",
       "$uid": {
-        ".write": "auth != null && $uid == auth.uid"
+        ".write": "true"
       },
       "$name": {
         ".read": "true",
