@@ -12,7 +12,7 @@
                 </mat-form-field>
 
                 <mat-form-field class="input-field">
-                    <input matInput placeholder="Email" [(ngModel)]="email" class="FormControl" formControlName="email">
+                    <input matInput placeholder="Enter Email" [(ngModel)]="email" class="FormControl" formControlName="email">
                     <mat-error *ngIf="registerForm.controls['email'].hasError('pattern')">
                         Please enter a valid email address
                     </mat-error>
@@ -23,7 +23,7 @@
 
 
             <mat-form-field class="input-field">
-                <input matInput placeholder="Password" [(ngModel)]="password" type="password" class="FormControl" formControlName="pass">
+                <input matInput placeholder="Enter Password" [(ngModel)]="password" type="password" class="FormControl" formControlName="pass">
                 <mat-error *ngIf="registerForm.controls['pass'].hasError('required')">
                     Password <strong>required</strong>
                 </mat-error>
