@@ -23,7 +23,8 @@ import
   MatMenuModule,
   MatFormFieldModule,
   MatDialogModule,
-  MatSelectModule
+  MatSelectModule,
+  MatTabsModule
 } from '@angular/material';
 
 
@@ -68,7 +69,8 @@ import { PublicGuardService } from './services/guards/public-guard.service';
     MatIconModule,
     MatFormFieldModule,
     MatDialogModule,
-    MatSelectModule
+    MatSelectModule,
+    MatTabsModule
   ],
   providers: [
     AngularFireDatabase,
