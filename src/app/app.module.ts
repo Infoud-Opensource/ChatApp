@@ -33,12 +33,15 @@ import { SignInComponent } from './sign-in/sign-in.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { HomeComponent } from './home/home.component';
 import { IndexComponent } from './index/index.component';
+import { UsersComponent } from './users/users.component';
 
 
 //services
 import { AuthService } from './services/auth/auth.service';
 import { PrivateGuardService } from './services/guards/private-guard.service';
 import { PublicGuardService } from './services/guards/public-guard.service';
+import { UserService } from './services/user-service/user.service';
+
 
 @NgModule({
   declarations: [
@@ -47,6 +50,7 @@ import { PublicGuardService } from './services/guards/public-guard.service';
     SignUpComponent,
     HomeComponent,
     IndexComponent,
+    UsersComponent,
   ],
   imports: [
     AppRouterModule,

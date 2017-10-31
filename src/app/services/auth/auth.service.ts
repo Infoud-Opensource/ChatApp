@@ -3,18 +3,38 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
 import { Observable } from 'rxjs/Observable';
 import { Router } from '@angular/router';
+import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database-deprecated';
 
 @Injectable()
 export class AuthService {
 
   user: Observable<firebase.User>;
+  name: Observable<firebase.UserInfo>;
+  MESSAGES: FirebaseListObservable<any>;
+  errorMsg: any;
+  private IsLoggedIn: Boolean;
+  public email: String;
+  public userKey: string;
+  currentUser = firebase.auth().currentUser;
 
-  constructor(private firebaseAuth: AngularFireAuth, public _router: Router) { 
-    this.user = firebaseAuth.authState;
+  constructor(private _firebaseAuth: AngularFireAuth, public _router: Router, private _db: AngularFireDatabase) { 
+    this._firebaseAuth.authState.subscribe(
+      (auth) => {
+        if (auth != null) {
+          this.user = _db.object(`users/${auth.uid}`);
+          this.userKey = auth.uid;
+          // this.name = _db.object('users/' + auth.name);
+        }
+      });
+    this.MESSAGES = this._db.list('/messages');
+  }
+
+   authUser() {
+    return this.user;
   }
 
   signup(email: string, password: string, name: string) {
-    return this.firebaseAuth.auth.createUserWithEmailAndPassword(email, password)
+    return this._firebaseAuth.auth.createUserWithEmailAndPassword(email, password)
       // .then(value => { return this.sentNameToFirebase(value.uid, name) })
       .then(() => console.log("In succss"))
       .then(() => this._router.navigate(['../signIn']))
@@ -22,7 +42,7 @@ export class AuthService {
   }
 
   login(email: string, password: string) {
-    return this.firebaseAuth.auth.signInWithEmailAndPassword(email, password)
+    return this._firebaseAuth.auth.signInWithEmailAndPassword(email, password)
       .then(value => {
         console.log('Nice, it worked!');
         this._router.navigate(['../home'])
@@ -34,7 +54,7 @@ export class AuthService {
 
   
   logout() {
-    this.firebaseAuth.auth.signOut();
+    this._firebaseAuth.auth.signOut();
     this._router.navigate(['/signIn']);
   }
 
@@ -46,7 +66,30 @@ export class AuthService {
     return this.getAuthState().map(user => user ? true : false);
   }
 
-  getAuthState() { return this.firebaseAuth.authState }
+  getAuthState() { return this._firebaseAuth.authState }
+
+  sentNameToFirebase(uid, name) { return this._db.object(`users/${uid}`).update({ name: name }) }
+
+  sendMessageToFirebase(msg) { this.MESSAGES.push({ "text": msg }) }
+
+  getMessages(convId) { return this._db.list(`p2p/${convId}/messages`) }
+
+
+  getName(){ return this._db.object(`users/${name}`)}
+
+
+  getUserObj() { return this._db.object(`users/${this.userKey}`, { preserveSnapshot: true }); }
+
+
+  deleteUser() {
+    this._firebaseAuth.auth.currentUser.delete().then(function () {
+    // this.currentUser.delete().then(function () {
+      console.log("user deleted");
+      this._router.navigate(['/signIn'])
+    }).catch(function (error) {
+      console.log(error)
+    });
+  }
 
 
 }
