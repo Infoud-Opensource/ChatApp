@@ -23,7 +23,8 @@ import
   MatMenuModule,
   MatFormFieldModule,
   MatDialogModule,
-  MatSelectModule
+  MatSelectModule,
+  MatTabsModule
 } from '@angular/material';
 
 
@@ -72,7 +73,8 @@ import { UserService } from './services/user-service/user.service';
     MatIconModule,
     MatFormFieldModule,
     MatDialogModule,
-    MatSelectModule
+    MatSelectModule,
+    MatTabsModule
   ],
   providers: [
     AngularFireDatabase,
