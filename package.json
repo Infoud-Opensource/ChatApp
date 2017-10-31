@@ -30,6 +30,7 @@
     "angularfire2": "latest",
     "core-js": "latest",
     "firebase": "latest",
+    "firebase-functions": "^0.7.1",
     "rxjs": "latest",
     "typescript": "latest",
     "zone.js": "latest"

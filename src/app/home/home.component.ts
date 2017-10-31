@@ -10,6 +10,10 @@ export class HomeComponent implements OnInit {
 
   constructor(public authService: AuthService) { }
 
+  deleteUser(){
+  
+  }
+
   logout() {
     this.authService.logout();
   }
