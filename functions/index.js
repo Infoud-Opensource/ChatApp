@@ -1,34 +1,34 @@
 const functions = require('firebase-functions');
-const bcrypt = require('bcrypt');
+const md5 = require('md5');
 const admin = require('firebase-admin');
 admin.initializeApp(functions.config().firebase);
 
-const SALT = "ljlja9dncoiqeuqwehf8123jsd"
-
 function hash(txt) {
-    return bcrypt.hash(txt, SALT)
+    return md5(txt)
 }
 
 
 exports.createUser = functions.auth.user().onCreate(event => {
     const value = event.data;
     console.log(value);
-    return hash(value.email)
-    .then(err, custUid => {
-        return admin.database().ref(`users/${value.uid}`).update({
-            email: value.email,
-            uid: custUid
-        })
-    })
+    const custUid = hash(value.email);
+
+    console.log(hash("test"))
+    console.log(hash("test"))
     
+    return admin.database().ref(`users/${value.uid}`).update({
+        email: value.email,
+        uid: custUid
+    })
+
 });
 
 
-// exports.deleteUser = functions.auth.user().onDelete(event => {
-//     const value = event.data;
-//     console.log(value);
-//     return admin.database().ref(`users/${value.uid}`).remove();
-// })
+exports.deleteUser = functions.auth.user().onDelete(event => {
+    const value = event.data;
+    console.log(value);
+    return admin.database().ref(`users/${value.uid}`).remove();
+})
 
 // exports.p2pMap = functions.database.ref(`p2p/{convId}`).onCreate(event => {
 //     const conv = event.data.val()
