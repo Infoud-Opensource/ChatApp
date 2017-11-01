@@ -1,0 +1,19 @@
+<mat-card class="main-content">
+  <div class="background">
+
+    <div *ngFor="let value of name | async">
+      <div class="text-area">{{ value.name }}</div>
+    </div>
+
+    <div *ngFor="let item of msgList | async" class="message-list">
+      <div>{{ item.text }}</div>
+    </div>
+
+    <div class="chat-text-box">
+      <mat-input-container class="input-field">
+        <input matInput type="text" placeholder="Write Message Here.." [(ngModel)]="msg" (keyup.enter)="sendMessage()">
+      </mat-input-container>&nbsp;
+      <button mat-raised-button color="primary" (click)="sendMessage()">Send</button>
+    </div>
+  </div>
+</mat-card>
