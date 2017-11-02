@@ -24,7 +24,8 @@ import
   MatMenuModule,
   MatFormFieldModule,
   MatDialogModule,
-  MatSelectModule
+  MatSelectModule,
+  MatTabsModule
 } from '@angular/material';
 
 
@@ -40,6 +41,7 @@ import { IndexComponent } from './index/index.component';
 import { AuthService } from './services/auth/auth.service';
 import { PrivateGuardService } from './services/guards/private-guard.service';
 import { PublicGuardService } from './services/guards/public-guard.service';
+import { ChatRoomComponent } from './chat-room/chat-room.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +50,7 @@ import { PublicGuardService } from './services/guards/public-guard.service';
     SignUpComponent,
     HomeComponent,
     IndexComponent,
+    ChatRoomComponent,
   ],
   imports: [
     AppRouterModule,
@@ -69,13 +72,14 @@ import { PublicGuardService } from './services/guards/public-guard.service';
     MatIconModule,
     MatFormFieldModule,
     MatDialogModule,
-    MatSelectModule
+    MatSelectModule,
+    MatTabsModule
   ],
   providers: [
-    AngularFireDatabase,
     AuthService,
     PrivateGuardService,
-    PublicGuardService
+    PublicGuardService,
+    AngularFireDatabase
   ],
   bootstrap: [AppComponent]
 })
