@@ -34,7 +34,7 @@ exports.deleteUser = functions.auth.user().onDelete(event => {
 //     const conv = event.data.val()
 //     const convId = event.params.convId
 
-//     const uid1 = conv.users[0]
+//     const uid1 = conv.users[0]    -->custUid 
 //     const uid2 = conv.users[1]
 
 //     const p2pMapUid1 = admin.database().ref(`p2pMap/${uid1}/${uid2}`).set(convId)

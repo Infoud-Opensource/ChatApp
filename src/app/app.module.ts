@@ -5,9 +5,10 @@ import { environment } from 'environments/environment';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AngularFireModule  } from 'angularfire2';
 import { HttpModule } from '@angular/http';
-import { AngularFireDatabaseModule, AngularFireDatabase } from 'angularfire2/database';
-import { AngularFireAuthModule } from 'angularfire2/auth';
+import { AngularFireAuthModule } from 'angularfire2/auth'
 import { AppRouterModule } from './app-router/app-router.module';
+import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database-deprecated';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
 
 //angular material
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -80,7 +81,8 @@ import { UserService } from './services/user-service/user.service';
     AngularFireDatabase,
     AuthService,
     PrivateGuardService,
-    PublicGuardService
+    PublicGuardService,
+    UserService
   ],
   bootstrap: [AppComponent]
 })

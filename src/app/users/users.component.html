@@ -1,23 +1,29 @@
-<p class="title">List Of Users </p>
-<md-form-field floatPlaceholder="never">
-  <input mdInput #filter placeholder="Search" [formControl]="myControl" [matAutocomplete]="auto">
-  <md-autocomplete #auto="mdAutocomplete">
-    <md-option *ngFor="let item of users | async">
-      <a *ngIf="currentUserUid != item.uid" class="buttons" (click)="toChatRoom(item.uid)" md-button color="primary">{{ item.name}}</a>
-    </md-option>
-  </md-autocomplete>
-</md-form-field>
+<!--<p class="title">List Of Users </p>
 <mat-form-field floatPlaceholder="never">
   <input matInput #filter placeholder="Search" [formControl]="myControl" [matAutocomplete]="auto">
   <mat-autocomplete #auto="matAutocomplete">
-    <mat-option *ngFor="let item of users | async">
+    <!--<mat-option *ngFor="let item of users | async">
       <a *ngIf="currentUserUid != item.uid" class="buttons" (click)="toChatRoom(item.uid)" mat-button color="primary">{{ item.name}}</a>
-    </mat-option>
+    </mat-option>-->
+    <!--<div *ngFor="let item of users | async">
+      <a *ngIf="currentUserUid != item.uid" class="buttons" (click)="toChatRoom(item.uid)" mat-button color="primary">{{ item.name}}</a>
+    </div>
   </mat-autocomplete>
-</mat-form-field>
+</mat-form-field>-->
+
+<p class="title">List Of Users </p>
+ -<mat-form-field floatPlaceholder="never">
+ -      <input matInput #filter placeholder="Search" [formControl]="myControl" [matAutocomplete]="auto">
+ -      <mat-autocomplete #auto="matAutocomplete">
+ -        <mat-option *ngFor="let item of users | async">
+ -          <a *ngIf="currentUserUid != item.uid" class="buttons" (click)="toChatRoom(item.uid)" mat-button color="primary">{{ item.name}}</a>
+ -        </mat-option>
+ -      </mat-autocomplete>
+ -</mat-form-field>
+
 
  <!--<div *ngFor="let item of users | async">
- -    <a *ngIf="currentUserUid != item.uid" class="buttons" (click)="toChatRoom(item.uid)" md-button color="primary">{{ item.name}}</a>
+ -    <a *ngIf="currentUserUid != item.uid" class="buttons" (click)="toChatRoom(item.uid)" mat-button color="primary">{{ item.name}}</a>
  +    <a *ngIf="currentUserUid != item.uid" class="buttons" (click)="toChatRoom(item.uid)" mat-button color="primary">{{ item.name}}</a>
     </div>-->
   
@@ -25,7 +31,7 @@
   
   <!--<div class="user-list">
     <div *ngFor="let item of users | async">
- -    <a *ngIf="currentUserUid != item.uid" class="buttons" (click)="toChatRoom(item.uid)" md-button color="primary">{{ item.name}}</a>
+ -    <a *ngIf="currentUserUid != item.uid" class="buttons" (click)="toChatRoom(item.uid)" mat-button color="primary">{{ item.name}}</a>
  +    <a *ngIf="currentUserUid != item.uid" class="buttons" (click)="toChatRoom(item.uid)" mat-button color="primary">{{ item.name}}</a>
     </div>
   </div>--> 

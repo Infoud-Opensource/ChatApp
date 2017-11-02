@@ -21,7 +21,9 @@ export class UsersComponent implements OnInit {
   stateCtrl: any;
 
 
-  constructor(private _authService: AuthService, private _db: AngularFireDatabase, private _router: Router,private _userService: UserService, public _dialog: MatDialog) { }
+  constructor(private _router: Router,private _userService: UserService, public _dialog: MatDialog) { 
+    
+  }
 
   toChatRoom(uid) {
     this._userService.toChatRoom(uid);
@@ -39,9 +41,15 @@ export class UsersComponent implements OnInit {
   // }
 
   ngOnInit() {
-    this.user = this._userService.getSearchOptionObservable()
-    this.users = this._db.list(`/users`);
-    this.currentUserUid = this._authService.userKey;
+    // this.user = this._userService.getSearchOptionObservable()
+    // this.users = this._db.list(`/users`);
+    // this.currentUserUid = this._authService.userKey;
+
+    this._userService.getChats()
+    .subscribe((data)=>{
+      console.log("in sub")
+      console.log(data)
+    })
   }
 
 }
