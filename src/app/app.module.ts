@@ -5,7 +5,8 @@ import { environment } from 'environments/environment';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AngularFireModule  } from 'angularfire2';
 import { HttpModule } from '@angular/http';
-import { AngularFireDatabaseModule, AngularFireDatabase } from 'angularfire2/database';
+import { AngularFireDatabaseModule } from 'angularfire2/database'
+import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database-deprecated';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AppRouterModule } from './app-router/app-router.module';
 

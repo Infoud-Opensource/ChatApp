@@ -1,21 +1,60 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth';
+import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database-deprecated';
 import * as firebase from 'firebase/app';
 import { Observable } from 'rxjs/Observable';
 import { Router } from '@angular/router';
+import 'rxjs/add/operator/do';
 
 @Injectable()
 export class AuthService {
 
+  userId: String;
   user: Observable<firebase.User>;
+  private authState : any;
 
-  constructor(private firebaseAuth: AngularFireAuth, public _router: Router) { 
-    this.user = firebaseAuth.authState;
+  constructor(private firebaseAuth: AngularFireAuth, public _router: Router , private db:AngularFireDatabase) { 
+ // this.user = firebaseAuth.authState;
+    this.firebaseAuth.authState
+        .do(user => {
+          if(user){
+            this.userId = user.uid
+            this.updateOnConnect()
+            this.updateOnDisconnect()
+          }
+    })
+    .subscribe();
+  }
+
+  private updateStatus(status : string)
+    {
+      if(!this.userId) return
+        this.db.object(`users/${this.userId}`).update({status : status})
+    }
+  
+  private updateOnConnect()
+  {
+    return this.db.object('. info/connected')
+    .do(connected =>{
+      let status = connected.$value ? 'online' : 'offline'
+         this.updateStatus(status)
+    })
+    .subscribe()
+  }
+
+  private updateOnDisconnect()
+  {
+    firebase.database().ref().child('users/$this.userId')
+    .onDisconnect()
+    .update({status : 'offline'})
   }
 
   signup(email: string, password: string, name: string) {
     return this.firebaseAuth.auth.createUserWithEmailAndPassword(email, password)
-      // .then(value => { return this.sentNameToFirebase(value.uid, name) })
+      .then((user) => {
+        this.authState='user';
+        const status = 'online';
+      })
       .then(() => console.log("In succss"))
       .then(() => this._router.navigate(['../signIn']))
       .catch(err => console.error('Something went wrong:', err.message));
@@ -35,6 +74,7 @@ export class AuthService {
   
   logout() {
     this.firebaseAuth.auth.signOut();
+    this.updateStatus('offline')
     this._router.navigate(['/signIn']);
   }
 
@@ -48,5 +88,6 @@ export class AuthService {
 
   getAuthState() { return this.firebaseAuth.authState }
 
-
 }
+
+
