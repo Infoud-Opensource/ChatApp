@@ -8,9 +8,5 @@
         <button mat-menu-item (click)="deleteUser()">Delete Account</button>
     </mat-menu>
 </mat-toolbar>
-<router-outlet>
-    <mat-tab-group>
-        <mat-tab label="chats"><app-chat-room></app-chat-room></mat-tab>
-        <mat-tab label="friends"></mat-tab>
-      </mat-tab-group>
-</router-outlet>
+<app-friends></app-friends>
+<router-outlet></router-outlet>

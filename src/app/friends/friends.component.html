@@ -1,0 +1,18 @@
+<mat-list>
+  <div *ngIf="recent?.length > 0">
+  <h3 mat-subheader>Recent Chats</h3>
+  <mat-list-item class="item" *ngFor="let recent of chats.recent">
+    <mat-icon class="col1" mat-list-icon>person</mat-icon>
+    <p class="col2" mat-line>name</p>
+    <p class="col3" mat-line> status </p>
+  </mat-list-item>
+  </div>
+
+  <mat-divider></mat-divider>
+  <h3 mat-subheader>Friends</h3>
+  <mat-list-item class="item" *ngFor="let friends of chats.friends">
+    <mat-icon class="col1" mat-list-icon>person</mat-icon>
+    <p class="col2" mat-line>name</p>
+    <p class="col3" mat-line> status </p>
+  </mat-list-item>
+</mat-list>
