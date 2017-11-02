@@ -1,5 +1,7 @@
 const functions = require('firebase-functions');
 const md5 = require('md5');
+
+
 const admin = require('firebase-admin');
 admin.initializeApp(functions.config().firebase);
 
@@ -7,22 +9,17 @@ function hash(txt) {
     return md5(txt)
 }
 
-
 exports.createUser = functions.auth.user().onCreate(event => {
     const value = event.data;
     console.log(value);
     const custUid = hash(value.email);
-
-    console.log(hash("test"))
-    console.log(hash("test"))
     
     return admin.database().ref(`users/${value.uid}`).update({
         email: value.email,
-        uid: custUid
+        uid: custUid,
+        authUid: value.uid
     })
-
 });
-
 
 exports.deleteUser = functions.auth.user().onDelete(event => {
     const value = event.data;
