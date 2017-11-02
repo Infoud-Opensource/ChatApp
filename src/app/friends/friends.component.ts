@@ -16,5 +16,6 @@ export class FriendsComponent implements OnInit {
 
   ngOnInit() {
   }
+  
 
 }

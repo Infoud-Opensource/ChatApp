@@ -16,10 +16,10 @@ const Routes: Routes = [
     canActivate: [PublicGuardService],
     canActivateChild: [PublicGuardService],
     children:[
-  { path: 'signIn', component: SignInComponent },
-  { path: 'signUp', component: SignUpComponent },
-  // { path: '', redirectTo: 'signIn', pathmatch: 'full'},
-  { path: '**', redirectTo: 'signIn' }
+      { path: 'signIn', component: SignInComponent },
+      { path: 'signUp', component: SignUpComponent },
+      { path: '', redirectTo: 'signIn', pathMatch: 'full'},
+      { path: '**', redirectTo: 'signIn' }
     ]
   },
   {
@@ -27,11 +27,11 @@ const Routes: Routes = [
     canActivate: [PrivateGuardService],
     canActivateChild: [PrivateGuardService],
     children: [
-      // { path: '', redirectTo: 'home', pathmatch: 'full'},
+      { path: '', redirectTo: 'home', pathMatch: 'full'},
       { path: '**', redirectTo: 'home' }
     ]
   },
-  // { path: '', redirectTo: 'public', pathmatch: 'full' },
+  { path: '', redirectTo: 'public', pathMatch: 'full' },
   { path: '**', redirectTo: 'public' }
 ]
 @NgModule({
