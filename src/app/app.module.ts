@@ -5,7 +5,7 @@ import { environment } from 'environments/environment';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AngularFireModule  } from 'angularfire2';
 import { HttpModule } from '@angular/http';
-import { AngularFireAuthModule } from 'angularfire2/auth'
+import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AppRouterModule } from './app-router/app-router.module';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database-deprecated';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
@@ -43,7 +43,7 @@ import { AuthService } from './services/auth/auth.service';
 import { PrivateGuardService } from './services/guards/private-guard.service';
 import { PublicGuardService } from './services/guards/public-guard.service';
 import { UserService } from './services/user-service/user.service';
-
+import { ChatRoomComponent } from './chat-room/chat-room.component';
 
 @NgModule({
   declarations: [
@@ -53,6 +53,7 @@ import { UserService } from './services/user-service/user.service';
     HomeComponent,
     IndexComponent,
     UsersComponent,
+    ChatRoomComponent,
   ],
   imports: [
     AppRouterModule,
@@ -78,11 +79,11 @@ import { UserService } from './services/user-service/user.service';
     MatTabsModule
   ],
   providers: [
-    AngularFireDatabase,
     AuthService,
     PrivateGuardService,
     PublicGuardService,
-    UserService
+    UserService,
+    AngularFireDatabase
   ],
   bootstrap: [AppComponent]
 })
