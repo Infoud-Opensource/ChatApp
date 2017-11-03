@@ -28,6 +28,12 @@ import
   MatTabsModule
 } from '@angular/material';
 
+//services
+import { AuthService } from './services/auth/auth.service';
+import { PrivateGuardService } from './services/guards/private-guard.service';
+import { PublicGuardService } from './services/guards/public-guard.service';
+import { UserService } from './services/user-service/user.service';
+
 
 //components
 import { AppComponent } from './app.component';
@@ -38,13 +44,8 @@ import { IndexComponent } from './index/index.component';
 import { UsersComponent } from './users/users.component';
 import { ChatRoomComponent } from './chat-room/chat-room.component';
 import { ChatsComponent } from './chats/chats.component';
+import { SettingsComponent } from './settings/settings.component';
 
-
-//services
-import { AuthService } from './services/auth/auth.service';
-import { PrivateGuardService } from './services/guards/private-guard.service';
-import { PublicGuardService } from './services/guards/public-guard.service';
-import { UserService } from './services/user-service/user.service';
 
 @NgModule({
   declarations: [
@@ -56,6 +57,7 @@ import { UserService } from './services/user-service/user.service';
     UsersComponent,
     ChatRoomComponent,
     ChatsComponent,
+    SettingsComponent,
   ],
   imports: [
     AppRouterModule,

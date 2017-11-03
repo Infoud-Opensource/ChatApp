@@ -1,13 +1,3 @@
-<mat-toolbar color="primary" class="button">
-  <button mat-mini-fab [matMenuTriggerFor]="menu">
-      <mat-icon>more_vert</mat-icon>
-  </button>
-  <mat-menu #menu="matMenu">
-      <button mat-menu-item (click)="logout()">Logout</button>
-      <button mat-menu-item (click)="deleteUser()">Delete Account</button>
-  </mat-menu>
-</mat-toolbar>
-
 <mat-list>
   <div *ngIf="recent?.length > 0">
   <h3 mat-subheader>Recent Chats</h3>

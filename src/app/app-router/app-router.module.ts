@@ -7,6 +7,7 @@ import { HomeComponent } from '../home/home.component';
 import { IndexComponent } from '../index/index.component';
 import { ChatRoomComponent} from '../chat-room/chat-room.component';
 import { ChatsComponent } from '../chats/chats.component';
+import { SettingsComponent } from '../settings/settings.component';
 
 // auth gaurds
 import { PrivateGuardService } from '../services/guards/private-guard.service';
@@ -31,6 +32,7 @@ const Routes: Routes = [
     children: [
       { path: 'chats', component: ChatsComponent },
       { path: 'chatRoom', component: ChatRoomComponent },
+      { path: 'settings', component: SettingsComponent },
       { path: '', redirectTo: 'chats', pathMatch: 'full'},
       { path: '**', redirectTo: 'chats' }
     ]

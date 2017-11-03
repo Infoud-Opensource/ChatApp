@@ -1,7 +1,3 @@
-.button{
-    display: flex;
-    align-items: flex-end;
-}
 .item{
     display: flex;
     flex-direction: row;
