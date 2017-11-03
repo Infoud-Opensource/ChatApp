@@ -11,21 +11,25 @@ export class AuthService {
 
   userId: String;
   user: Observable<firebase.User>;
-  name: Observable<firebase.UserInfo>;
-  errorMsg: any;
-  private IsLoggedIn: Boolean;
+  
+  // private IsLoggedIn: Boolean;
   public email: String;
   public userKey: string;
   currentUser = firebase.auth().currentUser;
   private authState: any;
   message: FirebaseListObservable<any>;
+  data:any;
 
   constructor(private _firebaseAuth: AngularFireAuth, public _router: Router, private _db: AngularFireDatabase) { 
     this._firebaseAuth.authState.subscribe(
       (auth) => {
         if (auth != null) {
-          this.user = _db.object(`users/${auth.uid}`);
-          this.userKey = auth.uid;
+          _db.object(`users/${auth.uid}`).subscribe(custUid => {
+            this.data = custUid;
+          })
+
+          // User data leke aao from auth.uid
+          this.userKey = this.data;
           // this.name = _db.object('users/' + auth.name);
         }
       });
@@ -73,10 +77,7 @@ export class AuthService {
     this._router.navigate(['/signIn']);
   }
 
-  authUser() {
-    return this.user;
-  }
-
+  
   private updateStatus(status: string) {
     if (!this.userId) return
     this._db.object(`users/${this.userId}`).update({ status: status })
