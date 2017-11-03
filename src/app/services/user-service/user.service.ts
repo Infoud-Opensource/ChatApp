@@ -100,6 +100,7 @@ export class UserService {
 
    groupChat() {
     let uid1 = this._authService.getCurrentUserId();
+
     // let uid2 = uid;
     // let uid3 = uid;
 
@@ -134,4 +135,5 @@ export class UserService {
   //    .filter(name => name && name.length >= 3)
   //       .flatMap(name => this.searchUser(name));
   // }
+
 }

@@ -10,7 +10,6 @@ export class AuthService {
   
   private data: any;
 
-
   constructor(
     private _firebaseAuth: AngularFireAuth,
     public _router: Router,
@@ -44,7 +43,6 @@ export class AuthService {
 
   private updateStatus(status: string) {
     if (!this.data || !this.data.authUid) return
-
     this._db.object(`users/${this.data.authUid}`).update({ status: status })
   }
 

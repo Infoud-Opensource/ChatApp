@@ -14,7 +14,9 @@ export class ChatsComponent implements OnInit {
     friends : []
   }
 
-  constructor() { }
+  constructor(private _userService : UserService) { 
+    this._userService.getChats()
+   }
 
 
   ngOnInit() {
