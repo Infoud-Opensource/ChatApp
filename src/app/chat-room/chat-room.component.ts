@@ -1,8 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FirebaseListObservable, AngularFireDatabase } from 'angularfire2/database-deprecated';
-import { AngularFireAuth, AUTH_PROVIDERS } from 'angularfire2/auth';
 import { AuthService } from '../services/auth/auth.service';
-import * as firebase from 'firebase/app';
 import { ActivatedRoute } from '@angular/router';
 import { MessageService } from '../services/message-service/message.service';
 
@@ -19,7 +16,7 @@ export class ChatRoomComponent implements OnInit {
   convId: any;
   user: any
 
-  constructor(public _authService: AuthService, private _db: AngularFireDatabase, private _activateRoute: ActivatedRoute, private _msg : MessageService) { }
+  constructor(public _authService: AuthService, private _activateRoute: ActivatedRoute, private _msg : MessageService) { }
 
   ngOnInit() {
     this._activateRoute.params.subscribe(this.onRouteParam);
