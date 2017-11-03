@@ -8,39 +8,25 @@ import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/databa
 
 @Injectable()
 export class AuthService {
-
-  userId: String;
-  user: Observable<firebase.User>;
-  
-  // private IsLoggedIn: Boolean;
-  public email: String;
   public userKey: string;
-  currentUser = firebase.auth().currentUser;
-  private authState: any;
   message: FirebaseListObservable<any>;
   data:any;
 
   constructor(private _firebaseAuth: AngularFireAuth, public _router: Router, private _db: AngularFireDatabase) { 
-    this._firebaseAuth.authState.subscribe(
-      (auth) => {
-        if (auth != null) {
-          _db.object(`users/${auth.uid}`).subscribe(custUid => {
-            this.data = custUid;
-          })
-
-          // User data leke aao from auth.uid
-          this.userKey = this.data;
-          // this.name = _db.object('users/' + auth.name);
-        }
-      });
     this.message = this._db.list('/messages');
 
     this._firebaseAuth.authState
       .do(user => {
         if (user) {
-          this.userId = user.uid
           this.updateOnConnect()
           this.updateOnDisconnect()
+
+          const userSubscription = _db.object(`users/${user.uid}`, {preserveSnapshot:true})
+            .subscribe(snapshot => {
+              this.data = snapshot.val();
+              this.userKey = this.data.uid
+              userSubscription.unsubscribe()
+            })
         }
       })
       .subscribe();
@@ -51,8 +37,6 @@ export class AuthService {
     return this._firebaseAuth.auth.createUserWithEmailAndPassword(email, password)
       .then(value => { return this.sentNameToFirebase(value.uid, name) })
       .then(() => {
-        this.authState = 'user';
-        const status = 'online';
         this._router.navigate(['../signIn'])
       })
       .catch(err => console.error('Something went wrong:', err.message));
@@ -79,21 +63,21 @@ export class AuthService {
 
   
   private updateStatus(status: string) {
-    if (!this.userId) return
-    this._db.object(`users/${this.userId}`).update({ status: status })
+    if (!this.data.authUid) return
+    this._db.object(`users/${this.data.authUid}`).update({ status: status })
   }
 
   private updateOnConnect() {
-    return this._db.object('. info/connected')
-      .do(connected => {
-        let status = connected.$value ? 'online' : 'offline'
-        this.updateStatus(status)
-      })
-      .subscribe()
+    let that = this
+    var connectedRef = firebase.database().ref(".info/connected");
+    connectedRef.on("value", function(connected) {
+      let status = connected.val() ? 'online' : 'offline'
+        that.updateStatus(status)
+    });
   }
 
   private updateOnDisconnect() {
-    firebase.database().ref().child('users/$this.userId')
+    firebase.database().ref().child(`users/${this.data.authUid}`)
       .onDisconnect()
       .update({ status: 'offline' })
   }
