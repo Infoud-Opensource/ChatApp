@@ -1,58 +1,37 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth';
-import * as firebase from 'firebase/app';
 import { Observable } from 'rxjs/Observable';
 import { Router } from '@angular/router';
 import 'rxjs/add/operator/do';
-import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database-deprecated';
+import { AngularFireDatabase } from 'angularfire2/database';
 
 @Injectable()
 export class AuthService {
-  public userKey: string;
-  message: FirebaseListObservable<any>;
-  data:any;
+  
+  private data: any;
 
-  constructor(private _firebaseAuth: AngularFireAuth, public _router: Router, private _db: AngularFireDatabase) { 
-    this.message = this._db.list('/messages');
-
+  constructor(
+    private _firebaseAuth: AngularFireAuth,
+    public _router: Router,
+    private _db: AngularFireDatabase) 
+  {
     this._firebaseAuth.authState
-      .do(user => {
-        if (user) {
-          this.updateOnConnect()
-          this.updateOnDisconnect()
-
-          const userSubscription = _db.object(`users/${user.uid}`, {preserveSnapshot:true})
-            .subscribe(snapshot => {
-              this.data = snapshot.val();
-              this.userKey = this.data.uid
-              userSubscription.unsubscribe()
-            })
-        }
-      })
+      .do(user => { if (user) { this.getUserData(user.uid) }})
       .subscribe();
   }
 
 
   signup(email: string, password: string, name: string) {
     return this._firebaseAuth.auth.createUserWithEmailAndPassword(email, password)
-      .then(value => { return this.sentNameToFirebase(value.uid, name) })
-      .then(() => {
-        this._router.navigate(['../signIn'])
-      })
+      .then(value => { return this.setNameToFirebase(value.uid, name) })
+      .then(() => { this._router.navigate(['../signIn']) })
       .catch(err => console.error('Something went wrong:', err.message));
-      
-      
   }
 
   login(email: string, password: string) {
     return this._firebaseAuth.auth.signInWithEmailAndPassword(email, password)
-      .then(value => {
-        console.log('Nice, it worked!');
-        this._router.navigate(['../home'])
-      })
-      .catch(err => {
-        console.log('Something went wrong:', err.message);
-      });
+      .then(value => { this._router.navigate(['../home']) })
+      .catch(err => { console.log('Something went wrong:', err.message) });
   }
 
   logout() {
@@ -61,58 +40,59 @@ export class AuthService {
     this._router.navigate(['/signIn']);
   }
 
-  
+
   private updateStatus(status: string) {
-    if (!this.data.authUid) return
+    if (!this.data || !this.data.authUid) return
+
     this._db.object(`users/${this.data.authUid}`).update({ status: status })
   }
 
   private updateOnConnect() {
     let that = this
-    var connectedRef = firebase.database().ref(".info/connected");
-    connectedRef.on("value", function(connected) {
+    var connectedRef = this._db.database.ref(".info/connected");
+    connectedRef.on("value", function (connected) {
       let status = connected.val() ? 'online' : 'offline'
-        that.updateStatus(status)
+      that.updateStatus(status)
     });
   }
 
   private updateOnDisconnect() {
-    firebase.database().ref().child(`users/${this.data.authUid}`)
+    if (!this.data || !this.data.authUid) return
+
+    this._db.database.ref().child(`users/${this.data.authUid}`)
       .onDisconnect()
       .update({ status: 'offline' })
   }
 
-  isLoggedIn() {
-    // if (!this.authenticationStateObservable) {
-    //   this.authenticationStateObservable = this.authenticationState.asObservable() 
-    // }
-    return this.getAuthState().map(user => user ? true : false);
-  }
+  isLoggedIn() { return this.getAuthState().map(user => user ? true : false) }
 
   getAuthState() { return this._firebaseAuth.authState }
 
-  sentNameToFirebase(uid, name) { return this._db.object(`users/${uid}`).update({ name: name }) }
-
-  getMessages(convId) { return this._db.list(`p2p/${convId}/messages`) }
-
-
-  getName(){ return this._db.object(`users/${name}`)}
-
-
-  getUserObj() { return this._db.object(`users/${this.userKey}`, { preserveSnapshot: true }); }
-
+  setNameToFirebase(authUid, name) { return this._db.object(`users/${authUid}`).update({ name: name }) }
 
   deleteUser() {
-    this._firebaseAuth.auth.currentUser.delete().then(function () {
-    // this.currentUser.delete().then(function () {
-      console.log("user deleted");
-      this._router.navigate(['/signIn'])
-    }).catch(function (error) {
-      console.log(error)
-    });
+    this._firebaseAuth.auth.currentUser
+      .delete()
+      .then(() => { this._router.navigate(['/signIn']) })
+      .catch((error) => { console.log(error) })
   }
 
-  sendMessageToFirebase(msg) { this.message.push({ "text": msg }) }
+  private getUserData(authUid) {
+    const userSubscription = this.getUserObj(authUid)
+      .valueChanges()
+      .subscribe(data => {
+        this.data = data
+        userSubscription.unsubscribe()
 
+        this.updateOnConnect()
+        this.updateOnDisconnect()
+      })
+  }
+
+  getUserObj(authUid) { return this._db.object(`users/${authUid}`) }
+
+  getCurrentUser() { return this.data }
+
+  getCurrentUserId() { return this.data.uid }
 
 }
