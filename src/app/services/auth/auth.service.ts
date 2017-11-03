@@ -79,8 +79,10 @@ export class AuthService {
   private getUserData(authUid) {
     const userSubscription = this.getUserObj(authUid)
       .valueChanges()
-      .subscribe(data => {
+      .subscribe((data:any) => {
         this.data = data
+        
+        localStorage.setItem('currentUid', data.uid)
         userSubscription.unsubscribe()
 
         this.updateOnConnect()
@@ -92,5 +94,5 @@ export class AuthService {
 
   getCurrentUser() { return this.data }
 
-  getCurrentUserId() { return this.data.uid }
+  getCurrentUserId() { return (this.data) ? this.data.uid : localStorage.getItem('currentUid') }
 }

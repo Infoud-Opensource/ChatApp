@@ -15,11 +15,16 @@ export class ChatsComponent implements OnInit {
   }
 
   constructor(private _userService : UserService) { 
-    this._userService.getChats()
    }
 
 
   ngOnInit() {
+    this._userService.getChats()
+    .subscribe((data:any) => {
+      console.log(data);
+      this.chats.recent = data;
+      this.chats.friends = data;
+    });
   }
   
 

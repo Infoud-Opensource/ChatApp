@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { AuthService } from '../auth/auth.service';
-import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database-deprecated';
 import { Router } from '@angular/router';
 import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs/Observable';
+import { AngularFireDatabase } from 'angularfire2/database';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/combineLatest';
 import 'rxjs/add/observable/forkJoin'
@@ -14,25 +14,26 @@ export class UserService {
 
   private stateCtrl: FormControl;
 
-  constructor(private _authService: AuthService, private _db: AngularFireDatabase, private _router: Router) { 
+  constructor(private _authService: AuthService, private _router: Router, private _db: AngularFireDatabase) { 
   }
 
   toChatRoom(uid) {
     let uid1 = this._authService.getCurrentUserId();
     let uid2 = uid;
 
-    let ref = this._db.object(`p2pMap/${uid1}/${uid2}`, { preserveSnapshot: true });
-    ref.subscribe(convSnapshot => {
-      if (convSnapshot.exists()) {
+    let ref = this._db.object(`p2pMap/${uid1}/${uid2}`)
+    .snapshotChanges()
+    .subscribe(convSnapshot => {
+      if (convSnapshot.payload.exists()) {
         // Redirect to chat with snapshot val as conversation id
-        let convId = convSnapshot.val()
+        let convId = convSnapshot.payload.val()
         this.redirectToChat(convId)
       } else {
         // create conversation
         let users_list = []
         users_list.push(uid1)
         users_list.push(uid2)
-        this._db.list('p2p', { preserveSnapshot: true })
+        this._db.list('p2p')
           .push({ "users": users_list })
           .then(newConvSnapshot => {
             // redircet to chat with push id as  conversation id
@@ -55,6 +56,8 @@ export class UserService {
 
   private prepareChats = (result) => {
     console.log("in map");
+    console.log(result);
+    
     
     // Get all p2p uid array
     let p2p = this.getP2PFromSnapshot(result.p2p)
@@ -91,11 +94,11 @@ export class UserService {
   }
 
   getP2PMap(uid) {
-    return this._db.list(`p2pMap/${uid}`, {preserveSnapshot:true})
+    return this._db.list(`p2pMap/${uid}`).snapshotChanges()
   }
 
   getAllUsers() {
-    return this._db.list('users', { preserveSnapshot : true})
+    return this._db.list('users').snapshotChanges()
   }
 
    groupChat() {
