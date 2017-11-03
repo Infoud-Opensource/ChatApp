@@ -7,7 +7,6 @@ import { AngularFireModule  } from 'angularfire2';
 import { HttpModule } from '@angular/http';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AppRouterModule } from './app-router/app-router.module';
-import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database-deprecated';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 
 //angular material
@@ -46,6 +45,8 @@ import { ChatRoomComponent } from './chat-room/chat-room.component';
 import { ChatsComponent } from './chats/chats.component';
 import { SettingsComponent } from './settings/settings.component';
 
+
+import { MessageService } from './services/message-service/message.service';
 
 @NgModule({
   declarations: [
@@ -87,7 +88,7 @@ import { SettingsComponent } from './settings/settings.component';
     PrivateGuardService,
     PublicGuardService,
     UserService,
-    AngularFireDatabase
+    MessageService
   ],
   bootstrap: [AppComponent]
 })

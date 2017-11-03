@@ -18,7 +18,7 @@ export class UserService {
   }
 
   toChatRoom(uid) {
-    let uid1 = this._authService.userKey;
+    let uid1 = this._authService.getCurrentUserId();
     let uid2 = uid;
 
     let ref = this._db.object(`p2pMap/${uid1}/${uid2}`, { preserveSnapshot: true });
@@ -48,7 +48,7 @@ export class UserService {
   }
 
   getChats() {
-    return this.getP2PMap(this._authService.userKey)
+    return this.getP2PMap(this._authService.getCurrentUserId())
     .combineLatest(this.getAllUsers(), (val1, val2) => {return {'p2p':val1, 'users':val2}})
     .map(this.prepareChats)
   }
@@ -78,7 +78,7 @@ export class UserService {
   iterateUsersSnapshot(usersSnapshots, p2p : Array<any>, recent, friends) {
     usersSnapshots.forEach(userSnapshot => {
       const user = userSnapshot.val()
-      if (user.uid == this._authService.userKey) return
+      if (user.uid == this._authService.getCurrentUserId()) return
 
       if (p2p.includes(user.uid)) {
         // Recent
@@ -99,7 +99,8 @@ export class UserService {
   }
 
    groupChat() {
-    let uid1 = this._authService.userKey;
+    let uid1 = this._authService.getCurrentUserId();
+
     // let uid2 = uid;
     // let uid3 = uid;
 
