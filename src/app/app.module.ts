@@ -36,6 +36,8 @@ import { SignUpComponent } from './sign-up/sign-up.component';
 import { HomeComponent } from './home/home.component';
 import { IndexComponent } from './index/index.component';
 import { UsersComponent } from './users/users.component';
+import { ChatRoomComponent } from './chat-room/chat-room.component';
+import { ChatsComponent } from './chats/chats.component';
 
 
 //services
@@ -43,8 +45,6 @@ import { AuthService } from './services/auth/auth.service';
 import { PrivateGuardService } from './services/guards/private-guard.service';
 import { PublicGuardService } from './services/guards/public-guard.service';
 import { UserService } from './services/user-service/user.service';
-import { ChatRoomComponent } from './chat-room/chat-room.component';
-import { FriendsComponent } from './friends/friends.component';
 
 @NgModule({
   declarations: [
@@ -55,7 +55,7 @@ import { FriendsComponent } from './friends/friends.component';
     IndexComponent,
     UsersComponent,
     ChatRoomComponent,
-    FriendsComponent,
+    ChatsComponent,
   ],
   imports: [
     AppRouterModule,

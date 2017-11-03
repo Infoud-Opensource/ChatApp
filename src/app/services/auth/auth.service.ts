@@ -128,6 +128,4 @@ export class AuthService {
   }
 
   sendMessageToFirebase(msg) { this.message.push({ "text": msg }) }
-
-
 }

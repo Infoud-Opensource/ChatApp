@@ -5,6 +5,8 @@ import { SignInComponent } from '../sign-in/sign-in.component';
 import { SignUpComponent } from '../sign-up/sign-up.component';
 import { HomeComponent } from '../home/home.component';
 import { IndexComponent } from '../index/index.component';
+import { ChatRoomComponent} from '../chat-room/chat-room.component';
+import { ChatsComponent } from '../chats/chats.component';
 
 // auth gaurds
 import { PrivateGuardService } from '../services/guards/private-guard.service';
@@ -27,8 +29,10 @@ const Routes: Routes = [
     canActivate: [PrivateGuardService],
     canActivateChild: [PrivateGuardService],
     children: [
-      { path: '', redirectTo: 'home', pathMatch: 'full'},
-      { path: '**', redirectTo: 'home' }
+      { path: 'chats', component: ChatsComponent },
+      { path: 'chatRoom', component: ChatRoomComponent },
+      { path: '', redirectTo: 'chats', pathMatch: 'full'},
+      { path: '**', redirectTo: 'chats' }
     ]
   },
   { path: '', redirectTo: 'public', pathMatch: 'full' },
