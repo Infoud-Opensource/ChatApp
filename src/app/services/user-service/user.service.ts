@@ -134,5 +134,4 @@ export class UserService {
   //    .filter(name => name && name.length >= 3)
   //       .flatMap(name => this.searchUser(name));
   // }
-
 }

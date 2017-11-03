@@ -27,6 +27,12 @@ import
   MatTabsModule
 } from '@angular/material';
 
+//services
+import { AuthService } from './services/auth/auth.service';
+import { PrivateGuardService } from './services/guards/private-guard.service';
+import { PublicGuardService } from './services/guards/public-guard.service';
+import { UserService } from './services/user-service/user.service';
+
 
 //components
 import { AppComponent } from './app.component';
@@ -35,15 +41,10 @@ import { SignUpComponent } from './sign-up/sign-up.component';
 import { HomeComponent } from './home/home.component';
 import { IndexComponent } from './index/index.component';
 import { UsersComponent } from './users/users.component';
-
-
-//services
-import { AuthService } from './services/auth/auth.service';
-import { PrivateGuardService } from './services/guards/private-guard.service';
-import { PublicGuardService } from './services/guards/public-guard.service';
-import { UserService } from './services/user-service/user.service';
 import { ChatRoomComponent } from './chat-room/chat-room.component';
-import { FriendsComponent } from './friends/friends.component';
+import { ChatsComponent } from './chats/chats.component';
+import { SettingsComponent } from './settings/settings.component';
+
 
 import { MessageService } from './services/message-service/message.service';
 
@@ -56,7 +57,8 @@ import { MessageService } from './services/message-service/message.service';
     IndexComponent,
     UsersComponent,
     ChatRoomComponent,
-    FriendsComponent,
+    ChatsComponent,
+    SettingsComponent,
   ],
   imports: [
     AppRouterModule,

@@ -10,6 +10,7 @@ export class AuthService {
   
   private data: any;
 
+
   constructor(
     private _firebaseAuth: AngularFireAuth,
     public _router: Router,
@@ -94,5 +95,4 @@ export class AuthService {
   getCurrentUser() { return this.data }
 
   getCurrentUserId() { return this.data.uid }
-
 }
