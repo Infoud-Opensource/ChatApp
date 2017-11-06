@@ -28,7 +28,7 @@ export class ChatRoomComponent implements OnInit {
     this._msg.sendMessage({ 
       "text": this.msg,
       "sender": this.user.uid
-    }, this.convId)
+    })
     this.msg = "";
   }
 
