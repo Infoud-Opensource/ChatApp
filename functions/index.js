@@ -54,3 +54,9 @@ exports.grpMap = functions.database.ref(`grp/{grpId}`).onCreate(event => {
         console.log("All done")
     })
 })
+
+// exports.p2pMsgCreate = functions.database.ref(`p2p/{convId}/messages/{msgId}`).onCreate(event => {
+//     const msgId = event.params.msgId
+//     const convId = event.params.convId
+//     return admin.database().ref(`p2p/${convId}/messages/${msgId}`).update({"status":"sent"})
+// });
