@@ -31,7 +31,7 @@ const Routes: Routes = [
     canActivateChild: [PrivateGuardService],
     children: [
       { path: 'chats', component: ChatsComponent },
-      { path: 'chatRoom', component: ChatRoomComponent },
+      { path: 'chatRoom/:id', component: ChatRoomComponent },
       { path: 'settings', component: SettingsComponent },
       { path: '', redirectTo: 'chats', pathMatch: 'full'},
       { path: '**', redirectTo: 'chats' }

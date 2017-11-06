@@ -29,15 +29,21 @@ export class UserService {
         let convId = convSnapshot.payload.val()
         this.redirectToChat(convId)
       } else {
+        
         // create conversation
         let users_list = []
         users_list.push(uid1)
         users_list.push(uid2)
+
         this._db.list('p2p')
           .push({ "users": users_list })
           .then(newConvSnapshot => {
+            console.log("in then");
+            
+            console.log(newConvSnapshot.key);
+            
             // redircet to chat with push id as  conversation id
-            let convId = newConvSnapshot.val()
+            let convId = newConvSnapshot.key
             this.redirectToChat(convId)
           })
       }
@@ -54,11 +60,7 @@ export class UserService {
     .map(this.prepareChats)
   }
 
-  private prepareChats = (result) => {
-    console.log("in map");
-    console.log(result);
-    
-    
+  prepareChats = (result) => {
     // Get all p2p uid array
     let p2p = this.getP2PFromSnapshot(result.p2p)
     let usersSnapshots = result.users
@@ -74,13 +76,13 @@ export class UserService {
 
   getP2PFromSnapshot(p2pSnapshots) {
     let p2p = []
-    p2pSnapshots.forEach(peerSnapshot => p2p.push(peerSnapshot.$key))
+    p2pSnapshots.forEach(peerSnapshot => p2p.push(peerSnapshot.payload.key))
     return p2p;
   }
 
   iterateUsersSnapshot(usersSnapshots, p2p : Array<any>, recent, friends) {
     usersSnapshots.forEach(userSnapshot => {
-      const user = userSnapshot.val()
+      const user = userSnapshot.payload.val()
       if (user.uid == this._authService.getCurrentUserId()) return
 
       if (p2p.includes(user.uid)) {

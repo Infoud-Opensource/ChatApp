@@ -1,7 +1,8 @@
 <mat-list>
-  <div *ngIf="recent?.length > 0">
+    <!-- *ngIf="recent?.length > 0" -->
+  <div>
   <h3 mat-subheader>Recent Chats</h3>
-  <mat-list-item class="item" *ngFor="let recent of chats.recent" (click)="(recent.uid)">
+  <mat-list-item class="item" *ngFor="let recent of chats.recent" (click)="goToChat(recent.uid)">
     <mat-icon class="col1" mat-list-icon>person</mat-icon>
     <p class="col2" mat-line>{{recent.email}}</p>
     <p class="col3" mat-line> {{recent.status}} </p>
@@ -10,7 +11,7 @@
 
   <mat-divider></mat-divider>
   <h3 mat-subheader>Friends</h3>
-  <mat-list-item class="item" *ngFor="let friend of chats.friends" (click)="(friends.uid)">
+  <mat-list-item class="item" *ngFor="let friend of chats.friends" (click)="goToChat(friend.uid)">
     <mat-icon class="col1" mat-list-icon>person</mat-icon>
     <p class="col2" mat-line>{{friend.email}}</p>
     <p class="col3" mat-line> {{friend.status}} </p>

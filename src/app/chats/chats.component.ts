@@ -19,13 +19,16 @@ export class ChatsComponent implements OnInit {
 
 
   ngOnInit() {
-    this._userService.getChats()
-    .subscribe((data:any) => {
-      console.log(data);
-      this.chats.recent = data;
-      this.chats.friends = data;
-    });
-  }
+    this._userService
+    .getChats()
+    .subscribe((data: any)=> {
+      this.chats.recent = data.recent;
+      this.chats.friends = data.friends;
+    })
   
+  }
 
+  goToChat(uid) {
+    this._userService.toChatRoom(uid)
+  }
 }
