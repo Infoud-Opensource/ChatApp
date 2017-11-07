@@ -38,10 +38,6 @@ export class UserService {
         this._db.list('p2p')
           .push({ "users": users_list })
           .then(newConvSnapshot => {
-            console.log("in then");
-            
-            console.log(newConvSnapshot.key);
-            
             // redircet to chat with push id as  conversation id
             let convId = newConvSnapshot.key
             this.redirectToChat(convId)

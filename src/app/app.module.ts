@@ -47,6 +47,8 @@ import { SettingsComponent } from './settings/settings.component';
 
 
 import { MessageService } from './services/message-service/message.service';
+import { GroupFormComponent } from './group-form/group-form.component';
+import { DisplayStatusComponent } from './display-status/display-status.component';
 
 @NgModule({
   declarations: [
@@ -59,6 +61,8 @@ import { MessageService } from './services/message-service/message.service';
     ChatRoomComponent,
     ChatsComponent,
     SettingsComponent,
+    GroupFormComponent,
+    DisplayStatusComponent,
   ],
   imports: [
     AppRouterModule,
