@@ -32,6 +32,8 @@ import { AuthService } from './services/auth/auth.service';
 import { PrivateGuardService } from './services/guards/private-guard.service';
 import { PublicGuardService } from './services/guards/public-guard.service';
 import { UserService } from './services/user-service/user.service';
+import { UploadProfileService} from './services/upload-photo/upload-photo.service';
+import { MessageService } from './services/message-service/message.service';
 
 
 //components
@@ -46,7 +48,7 @@ import { ChatsComponent } from './chats/chats.component';
 import { SettingsComponent } from './settings/settings.component';
 
 
-import { MessageService } from './services/message-service/message.service';
+
 
 @NgModule({
   declarations: [
@@ -88,7 +90,10 @@ import { MessageService } from './services/message-service/message.service';
     PrivateGuardService,
     PublicGuardService,
     UserService,
-    MessageService
+    MessageService,
+    UploadProfileService
+    
+    
   ],
   bootstrap: [AppComponent]
 })

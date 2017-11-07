@@ -1,3 +1,14 @@
-<p>
-  settings works!
-</p>
+<div class="profile-align" style="position: relative">
+  <img class="round-img" [src]="user?.imageUrl" width="60px" height="60px">
+  <label class="img-upload" for="filebutton"><md-icon>edit</md-icon></label>
+</div>
+
+<div class="file-upload">
+  <input fxHide id="filebutton" type="file" #filebtn (change)="uploadsingle($event)">
+</div>
+
+
+    <div>
+      <button mat-button (click)="deleteUser()">Delete Account</button>
+
+    </div>
