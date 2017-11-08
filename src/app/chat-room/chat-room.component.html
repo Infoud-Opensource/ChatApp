@@ -6,9 +6,9 @@
 
     <div *ngFor="let item of msgList | async" class="message-list">
 
-          <div class="bubble" [class.you]="isYou(item.name)" [class.me]="isMe(item.name)">
-            <p>{{ item.text }} | {{  item.status}} </p>
-
+          <div class="bubble" [ngClass]="{'you':isYou(item.sender), 'me':isMe(item.sender)}">
+            <p>{{ item.text }}</p>
+            <app-display-delivery-status *ngIf="isMe(item.sender)" [status]="item.status"></app-display-delivery-status>
         </div>
     </div>
 

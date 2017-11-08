@@ -14,36 +14,30 @@ export class ChatRoomComponent implements OnInit {
   msg;
   msgList;
   convId: any;
-  user: any;
+  userId: any;
   name: any;
 
   constructor(public _authService: AuthService, private _activateRoute: ActivatedRoute, private _msg : MessageService) { }
 
   ngOnInit() {
     this._activateRoute.params.subscribe(this.onRouteParam);
-    this.user = this._authService.getCurrentUser()
+    this.userId = this._authService.getCurrentUserId()
   }
   sendMessage() {
-    if (!this.user || !this.msg) return
+    if (!this.userId || !this.msg) return
 
     this._msg.sendMessage({ 
       "text": this.msg,
-      "sender": this.user.uid
+      "sender": this.userId,
     })
     this.msg = "";
   }
 
-  isYou(name) {
-    if(name != this._authService.getCurrentUser())
-      return true;
-    else
-      return false;
+  isYou(id) {
+    return id != this.userId
   }
-  isMe(name) {
-    if(name == this._authService.getCurrentUser())
-      return false;
-    else
-      return true;
+  isMe(id) {
+    return id == this.userId
   }
 
   onRouteParam = (data) => {
