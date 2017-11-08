@@ -21,9 +21,9 @@ export class ChatRoomComponent implements OnInit {
 
   ngOnInit() {
     this._activateRoute.params.subscribe(this.onRouteParam);
+    this.user = this._authService.getCurrentUser()
   }
   sendMessage() {
-    this.user = this._authService.getCurrentUser()
     if (!this.user || !this.msg) return
 
     this._msg.sendMessage({ 

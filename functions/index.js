@@ -4,6 +4,7 @@ const md5 = require('md5');
 
 const admin = require('firebase-admin');
 admin.initializeApp(functions.config().firebase);
+const DEFAULT_DP = "https://firebasestorage.googleapis.com/v0/b/chatapp-140da.appspot.com/o/default%2Fdefault.png?alt=media&token=37edd301-ce83-4405-bb6f-3df7105a1ba6"
 
 function hash(txt) {
     return md5(txt)
@@ -17,7 +18,8 @@ exports.createUser = functions.auth.user().onCreate(event => {
     return admin.database().ref(`users/${value.uid}`).update({
         email: value.email,
         uid: custUid,
-        authUid: value.uid
+        authUid: value.uid,
+        imageUrl: DEFAULT_DP
     })
 });
 

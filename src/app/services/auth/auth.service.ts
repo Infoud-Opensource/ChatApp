@@ -47,6 +47,8 @@ export class AuthService {
   logout() {
     this._firebaseAuth.auth.signOut();
     this.updateStatus('offline')
+    localStorage.removeItem('currentUid')
+    localStorage.removeItem('currentUser')
     this._router.navigate(['/public/signIn']);
   }
 
@@ -82,7 +84,11 @@ export class AuthService {
   deleteUser() {
     this._firebaseAuth.auth.currentUser
       .delete()
-      .then(() => { this._router.navigate(['/public/signIn']) })
+      .then(() => {
+        localStorage.removeItem('currentUid')
+        localStorage.removeItem('currentUser')
+        this._router.navigate(['/public/signIn']) 
+      })
       .catch((error) => { console.log(error) })
   }
 
@@ -93,12 +99,13 @@ export class AuthService {
         this.data = data
         this.userData$.next(data)
         localStorage.setItem('currentUid', data.uid)
+        localStorage.setItem('currentUser', data)
       })
   }
 
   getUserObj(authUid) { return this._db.object(`users/${authUid}`) }
 
-  getCurrentUser() { return this.data }
+  getCurrentUser() { return (this.data) ? this.data : localStorage.getItem('currentUser') }
 
   getCurrentUserId() { return (this.data) ? this.data.uid : localStorage.getItem('currentUid') }
 
