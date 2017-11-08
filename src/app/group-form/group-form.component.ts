@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UserService } from '../services/user-service/user.service';
 
 @Component({
   selector: 'app-group-form',
@@ -6,17 +7,21 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./group-form.component.css']
 })
 export class GroupFormComponent implements OnInit {
+  
+  friends = [];
 
-  users: any;
-  user: any;
-  currentUserUid: any;
-  name: any;
-  userKey: any;
-
-
-  constructor() { }
+  constructor(private _userService : UserService) { }
 
   ngOnInit() {
+    this._userService
+    .getChats()
+    .subscribe((data: any)=> {
+      console.log(data);
+      
+      this.friends = data.friends;
+  })
   }
-
+  goToGroupChat(name, uid) {
+    this._userService.groupChat(name, uid)
+  }
 }

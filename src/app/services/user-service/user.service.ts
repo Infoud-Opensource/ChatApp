@@ -99,36 +99,29 @@ export class UserService {
     return this._db.list('users').snapshotChanges()
   }
 
-   groupChat() {
+   groupChat(name, uid) {
     let uid1 = this._authService.getCurrentUserId();
+    let users = [ ]
 
-    // let uid2 = uid;
-    // let uid3 = uid;
+    let ref = this._db.object(`grpMap/${uid1}/$users`)
+    .snapshotChanges()
+    .subscribe(grpsnapshot => {
+     
+        let group_list = []
+    group_list.push(uid1)
+    group_list.push(users)
+          this._db.list('group',)
+            .push({ "users": group_list })
+            .then(newGrpSnapshot => {
+              let grpId = newGrpSnapshot.val()
+              this.redirectToGrpChat(grpId)
+            })
+      })
+    }
 
-    // let ref = this._db.object(`grpMap/${uid1}/${uid2}/${uid3}`, { preserveSnapshot: true });
-    // ref.subscribe(grpsnapshot => {
-    //   if (grpsnapshot.exists()) {
-    //     let grpId = grpsnapshot.val()
-    //     this.redirectToGrpChat(grpId)
-    //   }
-    //   else {
-    //     let group_list = []
-    // group_list.push(uid1)
-    // group_list.push(uid2)
-    // group_list.push(uid3)
-    //       this._db.list('group', { preserveSnapshot: true })
-    //         .push({ "users": group_list })
-    //         .then(newGrpSnapshot => {
-    //           let grpId = newGrpSnapshot.val()
-    //           this.redirectToGrpChat(grpId)
-    //         })
-    //     }
-    //   })
-    // }
-
-    // redirectToGrpChat(grpId) {
-    //   console.log("direct " + grpId);
-    //   this._router.navigate(['/home/chatRoom', grpId]);
+    redirectToGrpChat(grpId) {
+      console.log("direct " + grpId);
+      this._router.navigate(['/home/chatRoom', grpId]);
   }
 
   // getSearchOptionObservable(){

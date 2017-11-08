@@ -46,15 +46,14 @@ exports.p2pMap = functions.database.ref(`p2p/{convId}`).onCreate(event => {
 exports.grpMap = functions.database.ref(`grp/{grpId}`).onCreate(event => {
     const grp = event.data.val()
     const grpId = event.params.grpId
+    data = {}
 
-    const uid1 = grp.users[0]
-    const uid2 = grp.users[1]
-    const uid3 = grp.users[2]
-
-    const grpMapUid1 = admin.database().ref(`grpMap/${uid1}/${uid2}/${uid3}`).set(grpId)
-    return Promise.all([grpMapUid1]).then(results => {
-        console.log("All done")
+    grp.users.forEach(uid => {
+      let path = `grpMap/${uid}/${grpId}`
+      data[path]=grp.name  
     })
+    if (Object.keys(data).length === 0 && data.constructor === Object) return
+    return admin.database().ref().update(data)
 })
 
 // exports.p2pMsgCreate = functions.database.ref(`p2p/{convId}/messages/{msgId}`).onCreate(event => {

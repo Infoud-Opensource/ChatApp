@@ -24,7 +24,8 @@ import
   MatFormFieldModule,
   MatDialogModule,
   MatSelectModule,
-  MatTabsModule
+  MatTabsModule,
+  MatCheckboxModule,
 } from '@angular/material';
 
 //services
@@ -87,7 +88,8 @@ import { DisplayDeliveryStatusComponent } from './display-delivery-status/displa
     MatFormFieldModule,
     MatDialogModule,
     MatSelectModule,
-    MatTabsModule
+    MatTabsModule,
+    MatCheckboxModule
   ],
   providers: [
     AuthService,

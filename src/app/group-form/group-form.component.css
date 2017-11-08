@@ -1,0 +1,10 @@
+.user-list{
+    padding: 20px;
+}
+.group-name{
+    min-width: 100%;
+}
+.group-button{
+    display: flex;
+    justify-content: flex-end;
+}

@@ -1,15 +1,20 @@
-<mat-toolbar color="primary" class="button"> 
-  <button mat-icon-button [routerLink]="['./home']"><mat-icon>keyboard_backspace</mat-icon></button>
+<mat-toolbar color="primary" class="button">
+  <button mat-icon-button [routerLink]="['./home']">
+    <mat-icon>keyboard_backspace</mat-icon>
+  </button>
 </mat-toolbar>
 <div class="user-list">
   <form>
-    <mat-form-field>
+    <mat-form-field class="group-name">
       <input matInput placeholder="Enter Group Name" [(ngModel)]="name" name="something">
     </mat-form-field>
+
+    <div *ngFor="let friend of friends">
+      <mat-checkbox mat-button color="primary">{{ friend.name}}</mat-checkbox>
+    </div>
   </form>
-  <p class="title">Select Names </p>
-  <div *ngFor="let item of users | async">
-    <mat-checkbox *ngIf="currentUserUid != item.uid" class="buttons" (click)="getUserId()" mat-button color="primary">{{ item.name}}</mat-checkbox>
-  </div><br>
-  <button mat-raised-button color="primary" (click)="groupChat()">Create Group</button>
+  <br>
+  <div class="group-button">
+    <button mat-raised-button color="primary" (click)="goToGroupChat()">Create Group</button>
+  </div>
 </div>
