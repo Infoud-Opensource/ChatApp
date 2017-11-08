@@ -14,9 +14,10 @@ export class SettingsComponent implements OnInit {
   uploadProcess = 0;
   uploadFlag = false;
 
-  constructor(private upSvc: UploadProfileService) { }
+  constructor(private upSvc: UploadProfileService, private _auth: AuthService) { }
 
   ngOnInit() {
+    this.user = this._auth.getCurrentUserObs()
   }
 
   uploadsingle(event){
@@ -29,6 +30,8 @@ export class SettingsComponent implements OnInit {
   private onProcess = (process) => {this.uploadProcess = process; }
   private onComplete= () => {this.uploadProcess=0; this.uploadFlag=false;}
 
-
+  deleteUser() {
+    this._auth.deleteUser()
+  }
 }
 

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { Observable } from 'rxjs/Observable';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Router } from '@angular/router';
 import 'rxjs/add/operator/do';
 import { AngularFireDatabase } from 'angularfire2/database';
@@ -9,35 +10,44 @@ import { AngularFireDatabase } from 'angularfire2/database';
 export class AuthService {
   
   private data: any;
+  private userData$ = new BehaviorSubject(null)
 
   constructor(
     private _firebaseAuth: AngularFireAuth,
     public _router: Router,
     private _db: AngularFireDatabase) 
   {
-    this._firebaseAuth.authState
-      .do(user => { if (user) { this.getUserData(user.uid) }})
-      .subscribe();
+    this.subAuthState().subscribe();
+  }
+
+  private subAuthState() {
+    return this._firebaseAuth.authState
+    .filter(user => { return user ? true : false })
+    .switchMap(user => { return this.getUserData(user.uid) })
+    .do(() => {
+      this.updateOnConnect()
+      this.updateOnDisconnect()
+    })
   }
 
 
   signup(email: string, password: string, name: string) {
     return this._firebaseAuth.auth.createUserWithEmailAndPassword(email, password)
       .then(value => { return this.setNameToFirebase(value.uid, name) })
-      .then(() => { this._router.navigate(['../signIn']) })
+      .then(() => { this._router.navigate(['/home']) })
       .catch(err => console.error('Something went wrong:', err.message));
   }
 
   login(email: string, password: string) {
     return this._firebaseAuth.auth.signInWithEmailAndPassword(email, password)
-      .then(value => { this._router.navigate(['../home']) })
+      .then(value => { this._router.navigate(['/home']) })
       .catch(err => { console.log('Something went wrong:', err.message) });
   }
 
   logout() {
     this._firebaseAuth.auth.signOut();
     this.updateStatus('offline')
-    this._router.navigate(['/signIn']);
+    this._router.navigate(['/public/signIn']);
   }
 
 
@@ -72,21 +82,17 @@ export class AuthService {
   deleteUser() {
     this._firebaseAuth.auth.currentUser
       .delete()
-      .then(() => { this._router.navigate(['/signIn']) })
+      .then(() => { this._router.navigate(['/public/signIn']) })
       .catch((error) => { console.log(error) })
   }
 
   private getUserData(authUid) {
-    const userSubscription = this.getUserObj(authUid)
+    return this.getUserObj(authUid)
       .valueChanges()
-      .subscribe((data:any) => {
+      .map((data:any) => {
         this.data = data
-        
+        this.userData$.next(data)
         localStorage.setItem('currentUid', data.uid)
-        userSubscription.unsubscribe()
-
-        this.updateOnConnect()
-        this.updateOnDisconnect()
       })
   }
 
@@ -95,4 +101,6 @@ export class AuthService {
   getCurrentUser() { return this.data }
 
   getCurrentUserId() { return (this.data) ? this.data.uid : localStorage.getItem('currentUid') }
+
+  getCurrentUserObs() { return this.userData$.asObservable() }
 }
