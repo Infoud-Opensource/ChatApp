@@ -1,7 +1,7 @@
 {
   "rules": {
     "users": {
-      ".read": "auth != null",
+      ".read": "true",
       "$uid": {
         ".write": "true"
       },

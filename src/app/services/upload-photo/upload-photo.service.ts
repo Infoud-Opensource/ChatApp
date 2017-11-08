@@ -19,6 +19,7 @@ export class UploadProfileService {
   updateUserProfilePic(url): Observable<any> {
     return Observable.fromPromise(<Promise<any>>this._db.object(`/users/${this.uid}`).update({ 'imageUrl': url }))
   }
+  
   pushUpload(file) {
     let storageRef = fb.storage().ref();
     let task = storageRef.child(`${this.basePath}/${file.name}`).put(file);

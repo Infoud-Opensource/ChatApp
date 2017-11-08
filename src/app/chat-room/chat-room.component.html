@@ -1,12 +1,11 @@
-<mat-card class="main-content">
+<mat-toolbar color="primary" class="button"> 
+    <button mat-icon-button [routerLink]="['./home']"><mat-icon>keyboard_backspace</mat-icon></button>
+</mat-toolbar>
+<div class="main-content">
   <div class="background">
 
-    <div *ngFor="let value of name | async">
-      <div class="text-area">{{ value.name }}</div>
-    </div>
-
     <div *ngFor="let item of msgList | async" class="message-list">
-      <div>{{ item.text }} | {{  item.status}} </div>
+      <p>{{ item.text }} | {{  item.status}} </p>
     </div>
 
     <div class="chat-text-box">
@@ -16,4 +15,4 @@
       <button mat-raised-button color="primary" (click)="sendMessage()">Send</button>
     </div>
   </div>
-</mat-card>
+</div>

@@ -46,8 +46,8 @@ import { UsersComponent } from './users/users.component';
 import { ChatRoomComponent } from './chat-room/chat-room.component';
 import { ChatsComponent } from './chats/chats.component';
 import { SettingsComponent } from './settings/settings.component';
-
-
+import { GroupFormComponent } from './group-form/group-form.component';
+import { DisplayStatusComponent } from './display-status/display-status.component';
 
 
 @NgModule({
@@ -61,6 +61,8 @@ import { SettingsComponent } from './settings/settings.component';
     ChatRoomComponent,
     ChatsComponent,
     SettingsComponent,
+    GroupFormComponent,
+    DisplayStatusComponent,
   ],
   imports: [
     AppRouterModule,
