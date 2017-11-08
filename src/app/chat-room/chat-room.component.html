@@ -5,7 +5,11 @@
   <div class="background">
 
     <div *ngFor="let item of msgList | async" class="message-list">
-      <p>{{ item.text }} | {{  item.status}} </p>
+
+          <div class="bubble" [class.you]="isYou(item.name)" [class.me]="isMe(item.name)">
+            <p>{{ item.text }} | {{  item.status}} </p>
+
+        </div>
     </div>
 
     <div class="chat-text-box">

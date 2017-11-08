@@ -14,7 +14,8 @@ export class ChatRoomComponent implements OnInit {
   msg;
   msgList;
   convId: any;
-  user: any
+  user: any;
+  name: any;
 
   constructor(public _authService: AuthService, private _activateRoute: ActivatedRoute, private _msg : MessageService) { }
 
@@ -32,9 +33,23 @@ export class ChatRoomComponent implements OnInit {
     this.msg = "";
   }
 
+  isYou(name) {
+    if(name != this._authService.getCurrentUser())
+      return true;
+    else
+      return false;
+  }
+  isMe(name) {
+    if(name == this._authService.getCurrentUser())
+      return false;
+    else
+      return true;
+  }
+
   onRouteParam = (data) => {
     this.convId = data['id']
-    this.msgList = this._msg.getMessages(this.convId)
+    this.msgList = this._msg.getMessages(this.convId);
+    this.name = this._authService.getCurrentUser();
   }
 
 
