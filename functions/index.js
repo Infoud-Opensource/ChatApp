@@ -25,7 +25,7 @@ exports.deleteUser = functions.auth.user().onDelete(event => {
     const value = event.data;
     console.log(value);
     return admin.database().ref(`users/${value.uid}`).remove();
-})
+});
 
 exports.p2pMap = functions.database.ref(`p2p/{convId}`).onCreate(event => {
     const conv = event.data.val()

@@ -32,6 +32,8 @@ import { AuthService } from './services/auth/auth.service';
 import { PrivateGuardService } from './services/guards/private-guard.service';
 import { PublicGuardService } from './services/guards/public-guard.service';
 import { UserService } from './services/user-service/user.service';
+import { UploadProfileService} from './services/upload-photo/upload-photo.service';
+import { MessageService } from './services/message-service/message.service';
 
 
 //components
@@ -44,11 +46,9 @@ import { UsersComponent } from './users/users.component';
 import { ChatRoomComponent } from './chat-room/chat-room.component';
 import { ChatsComponent } from './chats/chats.component';
 import { SettingsComponent } from './settings/settings.component';
-
-
-import { MessageService } from './services/message-service/message.service';
 import { GroupFormComponent } from './group-form/group-form.component';
 import { DisplayStatusComponent } from './display-status/display-status.component';
+
 
 @NgModule({
   declarations: [
@@ -92,7 +92,10 @@ import { DisplayStatusComponent } from './display-status/display-status.componen
     PrivateGuardService,
     PublicGuardService,
     UserService,
-    MessageService
+    MessageService,
+    UploadProfileService
+    
+    
   ],
   bootstrap: [AppComponent]
 })
