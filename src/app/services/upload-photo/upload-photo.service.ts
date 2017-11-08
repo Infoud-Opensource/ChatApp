@@ -12,7 +12,7 @@ export class UploadProfileService {
 
   constructor(private _firebaseAuth: AngularFireAuth, private _db: AngularFireDatabase, private _auth :AuthService) { }
 
-  private basePath: string = '/uploads';
+  private basePath: string = '/profilepic';
   private uploadTask: fb.storage.UploadTask;
 
   updateUserProfilePic(url): Observable<any> {
