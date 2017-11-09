@@ -14,7 +14,7 @@ export class UserService {
 
   private stateCtrl: FormControl;
 
-  constructor(private _authService: AuthService, private _router: Router, private _db: AngularFireDatabase) { 
+  constructor(private _authService: AuthService, private _router: Router, private _db: AngularFireDatabase) {
   }
 
   toChatRoom(uid) {
@@ -22,28 +22,28 @@ export class UserService {
     let uid2 = uid;
 
     let ref = this._db.object(`p2pMap/${uid1}/${uid2}`)
-    .snapshotChanges()
-    .subscribe(convSnapshot => {
-      if (convSnapshot.payload.exists()) {
-        // Redirect to chat with snapshot val as conversation id
-        let convId = convSnapshot.payload.val()
-        this.redirectToChat(convId)
-      } else {
-        
-        // create conversation
-        let users_list = []
-        users_list.push(uid1)
-        users_list.push(uid2)
+      .snapshotChanges()
+      .subscribe(convSnapshot => {
+        if (convSnapshot.payload.exists()) {
+          // Redirect to chat with snapshot val as conversation id
+          let convId = convSnapshot.payload.val()
+          this.redirectToChat(convId)
+        } else {
 
-        this._db.list('p2p')
-          .push({ "users": users_list })
-          .then(newConvSnapshot => {
-            // redircet to chat with push id as  conversation id
-            let convId = newConvSnapshot.key
-            this.redirectToChat(convId)
-          })
-      }
-    })
+          // create conversation
+          let users_list = []
+          users_list.push(uid1)
+          users_list.push(uid2)
+
+          this._db.list('p2p')
+            .push({ "users": users_list })
+            .then(newConvSnapshot => {
+              // redircet to chat with push id as  conversation id
+              let convId = newConvSnapshot.key
+              this.redirectToChat(convId)
+            })
+        }
+      })
   }
 
   redirectToChat(convId) {
@@ -52,8 +52,8 @@ export class UserService {
 
   getChats() {
     return this.getP2PMap(this._authService.getCurrentUserId())
-    .combineLatest(this.getAllUsers(), (val1, val2) => {return {'p2p':val1, 'users':val2}})
-    .map(this.prepareChats)
+      .combineLatest(this.getAllUsers(), (val1, val2) => { return { 'p2p': val1, 'users': val2 } })
+      .map(this.prepareChats)
   }
 
   prepareChats = (result) => {
@@ -65,9 +65,9 @@ export class UserService {
     this.iterateUsersSnapshot(usersSnapshots, p2p, recent, friends)
 
     return {
-        'recent' : recent,
-        'friends' : friends
-      }
+      'recent': recent,
+      'friends': friends
+    }
   }
 
   getP2PFromSnapshot(p2pSnapshots) {
@@ -76,7 +76,7 @@ export class UserService {
     return p2p;
   }
 
-  iterateUsersSnapshot(usersSnapshots, p2p : Array<any>, recent, friends) {
+  iterateUsersSnapshot(usersSnapshots, p2p: Array<any>, recent, friends) {
     usersSnapshots.forEach(userSnapshot => {
       const user = userSnapshot.payload.val()
       if (user.uid == this._authService.getCurrentUserId()) return
@@ -99,29 +99,38 @@ export class UserService {
     return this._db.list('users').snapshotChanges()
   }
 
-   groupChat(name, uid) {
-    let uid1 = this._authService.getCurrentUserId();
-    let users = [ ]
-
-    let ref = this._db.object(`grpMap/${uid1}/$users`)
-    .snapshotChanges()
-    .subscribe(grpsnapshot => {
-     
-        let group_list = []
-    group_list.push(uid1)
-    group_list.push(users)
-          this._db.list('group',)
-            .push({ "users": group_list })
-            .then(newGrpSnapshot => {
-              let grpId = newGrpSnapshot.val()
-              this.redirectToGrpChat(grpId)
-            })
+  getAllUsersForGroups() {
+    return this._db.list('users')
+      .snapshotChanges(['child_removed'])
+      .map((actions) => {
+        return actions
+          .map(action => action.payload.val()) 
+          .filter(user => user.uid != this._authService.getCurrentUserId())
       })
-    }
+  }
 
-    redirectToGrpChat(grpId) {
-      console.log("direct " + grpId);
-      this._router.navigate(['/home/chatRoom', grpId]);
+  groupChat(name, users) {
+    let uid1 = this._authService.getCurrentUserId();
+
+    let group_list = []
+    group_list.push(uid1)
+    group_list.push(...users)
+    console.log(group_list);
+    
+
+    this._db.list('groups', )
+      .push({ "users": group_list, "name":name })
+      .then(newGrpSnapshot => {
+        console.log("success");
+        
+        let grpId = newGrpSnapshot.key
+        this.redirectToGrpChat(grpId)
+      })
+  }
+
+  redirectToGrpChat(grpId) {
+    console.log("direct " + grpId);
+    //this._router.navigate(['/home/chatRoom', grpId]);
   }
 
   // getSearchOptionObservable(){

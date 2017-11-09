@@ -4,17 +4,17 @@
   </button>
 </mat-toolbar>
 <div class="user-list">
-  <form>
     <mat-form-field class="group-name">
-      <input matInput placeholder="Enter Group Name" [(ngModel)]="name" name="something">
+      <input matInput placeholder="Enter Group Name" name="something" [formControl]="name">
+      <mat-error *ngIf="name.invalid"> Fullname is <strong> required</strong> </mat-error>
     </mat-form-field>
+    
 
-    <div *ngFor="let friend of friends">
-      <mat-checkbox mat-button color="primary">{{ friend.name}}</mat-checkbox>
+    <div *ngFor="let user of users | async">
+      <mat-checkbox mat-button color="primary" (change)="toggleUser($event.checked, user.uid)">{{ user.name }}</mat-checkbox>
     </div>
-  </form>
   <br>
   <div class="group-button">
-    <button mat-raised-button color="primary" (click)="goToGroupChat()">Create Group</button>
+    <button mat-raised-button color="primary" type="button" (click)="createGroup()">Create Group</button>
   </div>
 </div>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import{ FormGroup,FormControl,Validators} from '@angular/forms';
 import { UserService } from '../services/user-service/user.service';
 
 @Component({
@@ -7,21 +8,29 @@ import { UserService } from '../services/user-service/user.service';
   styleUrls: ['./group-form.component.css']
 })
 export class GroupFormComponent implements OnInit {
-  
-  friends = [];
+  users : any;
+  selectedUsers = []
 
-  constructor(private _userService : UserService) { }
+  name = new FormControl('', Validators.required)
 
-  ngOnInit() {
-    this._userService
-    .getChats()
-    .subscribe((data: any)=> {
-      console.log(data);
-      
-      this.friends = data.friends;
-  })
+  constructor(private _userService: UserService) { }
+
+  ngOnInit() { this.users = this._userService.getAllUsersForGroups() }
+
+  createGroup(event) {
+    if (! this.isValid()) return
+    console.log("valid");
+    
+    this._userService.groupChat(this.name.value, this.selectedUsers)
   }
-  goToGroupChat(name, uid) {
-    this._userService.groupChat(name, uid)
+
+  toggleUser(event, uid) {
+    if (event) {
+      this.selectedUsers.push(uid)
+    } else {
+      this.selectedUsers.splice(this.selectedUsers.indexOf(uid), 1)
+    }
   }
+
+  private isValid(){ return this.name.valid && this.selectedUsers.length }
 }
