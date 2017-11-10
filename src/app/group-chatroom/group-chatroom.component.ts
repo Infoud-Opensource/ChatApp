@@ -29,6 +29,7 @@ export class GroupChatroomComponent implements OnInit {
     this._msg.sendMessage({ 
       "text": this.msg,
       "sender": this.userId,
+      "name": this.name
     })
     this.msg = "";
   }
@@ -43,7 +44,7 @@ export class GroupChatroomComponent implements OnInit {
   onRouteParam = (data) => {
     this.groupId = data['id']
     this.msgList = this._msg.getMessages(this.groupId);
-    this.name = this._authService.getCurrentUser();
+    this.name = this._authService.getCurrentUser().name;
   }
 
 }
