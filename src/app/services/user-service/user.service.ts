@@ -109,6 +109,16 @@ export class UserService {
       })
   }
 
+  getAllGroups() {
+    return this._db.list('groups')
+      .snapshotChanges(['child_removed'])
+      .map((actions) => {
+        return actions
+          .map(action => action.payload.val()) 
+          .filter(user => user.uid = this._authService.getCurrentUserId())
+      })
+  }
+
   groupChat(name, users) {
     let uid1 = this._authService.getCurrentUserId();
 

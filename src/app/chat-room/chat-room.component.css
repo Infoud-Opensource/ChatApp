@@ -17,18 +17,23 @@
     vertical-align: top;
   }
   .you {
+    height: 50px;
     display: inherit;
     margin: 5px 45px 5px 20px;
-    background: #eee
+    background: #CFD8DC;
   }
   .you::before {
     left: -9px;
   }
   .me {
+    height: 50px;
     display: inherit;
-    margin: 5px 20px 5px 45px;
-    background: #77ff77
+    margin: 5px 0px 5px 70px;
+    background: #ECEFF1;
   }
   .me::before {
     right: -9px;
+  }
+  .message-row{
+    display: flex;
   }

@@ -14,6 +14,8 @@ export class ChatsComponent implements OnInit {
     friends : []
   }
 
+  groups = []
+
   constructor(private _userService : UserService, private _authService: AuthService) { 
    }
 
@@ -25,7 +27,11 @@ export class ChatsComponent implements OnInit {
       this.chats.recent = data.recent;
       this.chats.friends = data.friends;
     })
-  
+    this._userService
+    .getAllGroups()
+    .subscribe((data) => {
+      this.groups = data;
+    })
   }
 
   goToChat(uid) {

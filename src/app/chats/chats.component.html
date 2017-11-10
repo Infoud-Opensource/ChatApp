@@ -1,31 +1,44 @@
 <mat-toolbar color="primary" class="button">
-    <button mat-mini-fab [matMenuTriggerFor]="menu">
-        <mat-icon>more_vert</mat-icon>
-    </button>
-    <mat-menu #menu="matMenu">
-        <button mat-menu-item [routerLink]="['../group']">Create Group</button>
-        <button mat-menu-item [routerLink]="['../settings']">Settings</button>
-        <button mat-menu-item (click)="logout()">Logout</button>
-        
-    </mat-menu>
-  </mat-toolbar>
+  <button mat-mini-fab [matMenuTriggerFor]="menu">
+    <mat-icon>more_vert</mat-icon>
+  </button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item [routerLink]="['../group']">Create Group</button>
+    <button mat-menu-item [routerLink]="['../settings']">Settings</button>
+    <button mat-menu-item (click)="logout()">Logout</button>
+
+  </mat-menu>
+</mat-toolbar>
 
 <mat-list>
-    <!-- *ngIf="recent?.length > 0" -->
+  <!-- *ngIf="recent?.length > 0" -->
   <div>
-  <h3 mat-subheader>Recent Chats</h3>
-  <mat-list-item class="item" *ngFor="let recent of chats.recent" (click)="goToChat(recent.uid)">
-    <img class="img-dp" [src]="recent.imageUrl"/>
-    <p class="col2" mat-line>{{recent.name}}</p>
-    <p class="col3" mat-line> <app-display-status [status]="recent.status"></app-display-status> </p>
-  </mat-list-item>
+    <h3 mat-subheader>Recent Chats</h3>
+    <mat-list-item class="item" *ngFor="let recent of chats.recent" (click)="goToChat(recent.uid)">
+      <div class="col1">
+        <img class="img-dp" [src]="recent.imageUrl" />
+      </div>
+      <p class="col2" mat-line>{{recent.name}}</p>
+      <p class="col3" mat-line>
+        <app-display-status [status]="recent.status"></app-display-status>
+      </p>
+    </mat-list-item>
   </div>
+
+  <mat-divider></mat-divider>
+  <h3 mat-subheader>Groups</h3>
+  <mat-list-item class="item" *ngFor="let group of groups" (click)="goToChat(friend.uid)">
+    <!-- <img class="img-dp" [src]="friend.imageUrl" /> -->
+    <p mat-line>{{group.name}}</p>
+  </mat-list-item>
 
   <mat-divider></mat-divider>
   <h3 mat-subheader>Friends</h3>
   <mat-list-item class="item" *ngFor="let friend of chats.friends" (click)="goToChat(friend.uid)">
-      <img class="img-dp" [src]="friend.imageUrl"/>
+    <img class="img-dp" [src]="friend.imageUrl" />
     <p class="col2" mat-line>{{friend.name}}</p>
-    <p class="col3" mat-line> <app-display-status [status]="friend.status"></app-display-status> </p>
+    <p class="col3" mat-line>
+      <app-display-status [status]="friend.status"></app-display-status>
+    </p>
   </mat-list-item>
 </mat-list>

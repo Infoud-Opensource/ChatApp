@@ -50,6 +50,7 @@ import { SettingsComponent } from './settings/settings.component';
 import { GroupFormComponent } from './group-form/group-form.component';
 import { DisplayStatusComponent } from './display-status/display-status.component';
 import { DisplayDeliveryStatusComponent } from './display-delivery-status/display-delivery-status.component';
+import { GroupChatroomComponent } from './group-chatroom/group-chatroom.component';
 
 
 @NgModule({
@@ -66,6 +67,7 @@ import { DisplayDeliveryStatusComponent } from './display-delivery-status/displa
     GroupFormComponent,
     DisplayStatusComponent,
     DisplayDeliveryStatusComponent,
+    GroupChatroomComponent,
   ],
   imports: [
     AppRouterModule,
