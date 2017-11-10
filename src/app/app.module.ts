@@ -35,6 +35,7 @@ import { PublicGuardService } from './services/guards/public-guard.service';
 import { UserService } from './services/user-service/user.service';
 import { UploadProfileService} from './services/upload-photo/upload-photo.service';
 import { MessageService } from './services/message-service/message.service';
+import { GroupService } from './services/group/group.service';
 
 
 //components
@@ -99,9 +100,8 @@ import { GroupChatroomComponent } from './group-chatroom/group-chatroom.componen
     PublicGuardService,
     UserService,
     MessageService,
-    UploadProfileService
-    
-    
+    UploadProfileService,
+    GroupService
   ],
   bootstrap: [AppComponent]
 })

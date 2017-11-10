@@ -27,7 +27,7 @@
 
   <mat-divider></mat-divider>
   <h3 mat-subheader>Groups</h3>
-  <mat-list-item class="item" *ngFor="let group of groups" (click)="goToChat(friend.uid)">
+  <mat-list-item class="item" *ngFor="let group of groups" (click)="goToGroupChatroom(uid)">
     <!-- <img class="img-dp" [src]="friend.imageUrl" /> -->
     <p mat-line>{{group.name}}</p>
   </mat-list-item>

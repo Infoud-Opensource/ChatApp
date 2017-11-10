@@ -119,7 +119,7 @@ export class UserService {
       })
   }
 
-  groupChat(name, users) {
+  toGroupChat(name, users) {
     let uid1 = this._authService.getCurrentUserId();
 
     let group_list = []
@@ -140,7 +140,7 @@ export class UserService {
 
   redirectToGrpChat(grpId) {
     console.log("direct " + grpId);
-    //this._router.navigate(['/home/chatRoom', grpId]);
+    this._router.navigate(['/home/groupRoom', grpId]);
   }
 
   // getSearchOptionObservable(){

@@ -34,6 +34,10 @@ export class ChatsComponent implements OnInit {
     })
   }
 
+  goToGroupChatroom(uid){
+    this._userService.toGroupChat(name, uid)
+  }
+
   goToChat(uid) {
     this._userService.toChatRoom(uid)
   }

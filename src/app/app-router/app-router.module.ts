@@ -9,6 +9,7 @@ import { ChatRoomComponent} from '../chat-room/chat-room.component';
 import { ChatsComponent } from '../chats/chats.component';
 import { SettingsComponent } from '../settings/settings.component';
 import { GroupFormComponent } from '../group-form/group-form.component';
+import { GroupChatroomComponent } from '../group-chatroom/group-chatroom.component';
 
 // auth gaurds
 import { PrivateGuardService } from '../services/guards/private-guard.service';
@@ -35,6 +36,7 @@ const Routes: Routes = [
       { path: 'chatRoom/:id', component: ChatRoomComponent },
       { path: 'settings', component: SettingsComponent },
       { path: 'group', component: GroupFormComponent},
+      { path: 'groupRoom/:id', component: GroupChatroomComponent },
       { path: '', redirectTo: 'chats', pathMatch: 'full'},
       { path: '**', redirectTo: 'chats' }
     ]

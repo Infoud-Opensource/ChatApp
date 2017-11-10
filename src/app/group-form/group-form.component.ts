@@ -21,7 +21,7 @@ export class GroupFormComponent implements OnInit {
     if (! this.isValid()) return
     console.log("valid");
     
-    this._userService.groupChat(this.name.value, this.selectedUsers)
+    this._userService.toGroupChat(this.name.value, this.selectedUsers)
   }
 
   toggleUser(event, uid) {
