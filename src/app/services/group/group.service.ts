@@ -26,8 +26,6 @@ export class GroupService {
     this.doProcess(msgs, groupId, this.sentPredicate, SENT)
   }
 
-  private deliverPredicate(msg, currUid) { return msg.sender != currUid && msg.status == SENT }
-
   private sentPredicate(msg, currUid) { return msg.sender == currUid && msg.status == PENDING }
 
   private doProcess(msgs, groupId, predicate, status) {
