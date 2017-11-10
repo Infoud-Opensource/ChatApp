@@ -13,11 +13,14 @@ export class SettingsComponent implements OnInit {
   user: any;
   uploadProcess = 0;
   uploadFlag = false;
+  name: string;
+  emailId: string;
 
   constructor(private upSvc: UploadProfileService, private _auth: AuthService) { }
 
   ngOnInit() {
     this.user = this._auth.getCurrentUserObs()
+    this.name = this._auth.getCurrentUser().name;
   }
 
   uploadsingle(event){

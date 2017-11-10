@@ -1,19 +1,19 @@
-{
-  "rules": {
-    "users": {
-      ".read": "true",
-      "$uid": {
-        ".write": "true"
-      },
-      "$name": {
-        ".read": "true",
-        ".write": "true"
-      }
-    },
-      "messages": {
-      ".read":"true",
-      ".write":"true"    
-    }
-  }
-}
+// {
+//   "rules": {
+//     "users": {
+//       ".read": "true",
+//       "$uid": {
+//         ".write": "true"
+//       },
+//       "$name": {
+//         ".read": "true",
+//         ".write": "true"
+//       }
+//     },
+//       "messages": {
+//       ".read":"true",
+//       ".write":"true"    
+//     }
+//   }
+// }
 
