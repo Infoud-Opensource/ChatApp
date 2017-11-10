@@ -10,6 +10,7 @@
 
       <div class="bubble" [ngClass]="{'you':isYou(item.sender), 'me':isMe(item.sender)}">
         <span class="message-row">
+          <p>{{ item.name }}</p>
           <p class="text">{{ item.text }}</p>
             <app-display-delivery-status class="status" *ngIf="isMe(item.sender)" [status]="item.status"></app-display-delivery-status>
         </span>
