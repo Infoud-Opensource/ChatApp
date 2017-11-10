@@ -110,13 +110,10 @@ export class UserService {
   }
 
   getAllGroups() {
-    return this._db.list('groups')
-      .snapshotChanges(['child_removed'])
-      .map((actions) => {
-        return actions
-          .map(action => action.payload.val()) 
-          .filter(user => user.uid = this._authService.getCurrentUserId())
-      })
+    const uid = this._authService.getCurrentUserId()
+    return this._db.list(`groupMap/${uid}`)
+      .snapshotChanges()
+      .map(groups => groups.map(group=> ({grpId:group.payload.key, ...group.payload.val()})))
   }
 
   toGroupChat(name, users) {
