@@ -21,12 +21,15 @@ export class ChatsComponent implements OnInit {
 
 
   ngOnInit() {
+    // Get Chats
     this._userService
     .getChats()
     .subscribe((data: any)=> {
       this.chats.recent = data.recent;
       this.chats.friends = data.friends;
     })
+
+    // Get Groups
     this._userService
     .getAllGroups()
     .subscribe((data) => {
@@ -34,8 +37,8 @@ export class ChatsComponent implements OnInit {
     })
   }
 
-  goToGroupChatroom(uid){
-    this._userService.toGroupChat(name, uid)
+  goToGroupChatroom(grpId){
+    this._userService.redirectToGrpChat(grpId)
   }
 
   goToChat(uid) {
