@@ -24,7 +24,8 @@ const Routes: Routes = [
       { path: 'signIn', component: SignInComponent },
       { path: 'signUp', component: SignUpComponent },
       { path: '', redirectTo: 'signIn', pathMatch: 'full'},
-      { path: '**', redirectTo: 'signIn' }
+      { path: '**', redirectTo: 'signIn' },
+      
     ]
   },
   {
@@ -37,8 +38,11 @@ const Routes: Routes = [
       { path: 'settings', component: SettingsComponent },
       { path: 'group', component: GroupFormComponent},
       { path: 'groupRoom/:id', component: GroupChatroomComponent },
-      { path: '', redirectTo: 'chats', pathMatch: 'full'},
-      { path: '**', redirectTo: 'chats' }
+      { path: '', redirectTo: 'chats', pathMatch: 'full',
+      resolve: { users :HomeComponent}
+      },
+      { path: '**', redirectTo: 'chats' },
+      
     ]
   },
   { path: '', redirectTo: 'public', pathMatch: 'full' },

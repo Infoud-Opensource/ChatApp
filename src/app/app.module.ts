@@ -26,6 +26,7 @@ import
   MatSelectModule,
   MatTabsModule,
   MatCheckboxModule,
+  MatProgressSpinnerModule,
 } from '@angular/material';
 
 //services
@@ -92,7 +93,8 @@ import { GroupChatroomComponent } from './group-chatroom/group-chatroom.componen
     MatDialogModule,
     MatSelectModule,
     MatTabsModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatProgressSpinnerModule
   ],
   providers: [
     AuthService,
