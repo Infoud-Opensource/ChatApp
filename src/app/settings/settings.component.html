@@ -1,15 +1,23 @@
+<mat-toolbar color="primary" class="button">
+  <button mat-icon-button [routerLink]="['./home']">
+    <mat-icon>keyboard_backspace</mat-icon>
+  </button>
+</mat-toolbar>
+<br>
 <div class="profile-align" style="position: relative">
-  <img class="round-img" [src]="(user | async)?.imageUrl" width="60px" height="60px">
-  <label class="img-upload" for="filebutton"><md-icon>edit</md-icon></label>
-</div>
+  <img class="round-img" [src]="(user | async)?.imageUrl" width="100px" height="100px">
+  <label class="img-upload" for="filebutton"><mat-icon>edit</mat-icon></label>
+</div><br>
 
 <div class="file-upload">
-  <input fxHide id="filebutton" type="file" #filebtn (change)="uploadsingle($event)">
+  <input id="filebutton" type="file" #filebtn (change)="uploadsingle($event)">
 </div>
 
 <br><br><br>
+ <div class="details">
+        <p class="user-name">{{ user.name }}</p>
+        <p class="user-email">{{ user.email}}</p>
+      </div>
 
-    <div>
-      <button mat-button (click)="deleteUser()">Delete Account</button>
 
-    </div>
+<button class="button" color="primary" mat-raised-button (click)="deleteUser()">Delete Account</button>

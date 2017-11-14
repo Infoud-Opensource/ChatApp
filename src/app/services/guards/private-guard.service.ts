@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
-import { Router } from '@angular/router';
+import { Router,Resolve } from '@angular/router';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AuthService } from '../auth/auth.service';
 import 'rxjs/add/operator/map';
 
 @Injectable()
-export class PrivateGuardService {
+export class PrivateGuardService implements Resolve<any>{
 
   constructor(private _auth:AuthService,private _router:Router) { }
 
@@ -25,5 +25,9 @@ export class PrivateGuardService {
         state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
         return this._auth.isLoggedIn()
       }
+
+      resolve(route: ActivatedRouteSnapshot) {
+    return this._auth.getCurrentUser().then(users => users);
+  }
 
 }

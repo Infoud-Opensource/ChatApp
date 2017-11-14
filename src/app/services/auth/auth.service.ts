@@ -94,7 +94,7 @@ export class AuthService {
 
   private getUserData(authUid) {
     return this.getUserObj(authUid)
-      .valueChanges()
+      .valueChanges()     
       .map((data:any) => {
         this.data = data
         this.userData$.next(data)
