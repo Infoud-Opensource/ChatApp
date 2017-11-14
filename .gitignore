@@ -8,9 +8,6 @@
 # dependencies
 /node_modules
 
-#environment
-/src/environments
-
 # IDEs and editors
 /.idea
 .project
@@ -43,3 +40,6 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+
+# environment
+/src/environments
