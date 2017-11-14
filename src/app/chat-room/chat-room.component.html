@@ -7,20 +7,16 @@
   <div class="background">
 
     <div *ngFor="let item of msgList | async" class="message-list">
-
       <div class="bubble" [ngClass]="{'you':isYou(item.sender), 'me':isMe(item.sender)}">
-        <span class="message-row">
           <p class="text">{{ item.text }}</p>
-            <app-display-delivery-status class="status" *ngIf="isMe(item.sender)" [status]="item.status"></app-display-delivery-status>
-        </span>
+          <app-display-delivery-status class="status" *ngIf="isMe(item.sender)" [status]="item.status"></app-display-delivery-status>
       </div>
     </div>
-
+  </div>
     <div class="chat-text-box">
       <mat-input-container class="input-field">
         <input matInput type="text" placeholder="Write Message Here.." [(ngModel)]="msg" (keyup.enter)="sendMessage()">
       </mat-input-container>&nbsp;
-      <button mat-raised-button color="primary" (click)="sendMessage()">Send</button>
+      <button class="text-button" mat-raised-button color="primary" (click)="sendMessage()">Send</button>
     </div>
-  </div>
 </div>
