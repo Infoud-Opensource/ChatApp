@@ -11,6 +11,7 @@ import { IndexComponent } from './pages/index/index.component';
 import { HomeComponent } from './pages/home/home.component';
 import { ChatsComponent } from './pages/chats/chats.component';
 import { ChatRoomComponent } from './pages/chat-room/chat-room.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { ChatRoomComponent } from './pages/chat-room/chat-room.component';
   ],
   imports: [
     BrowserModule,
+    RouterModule,
     BrowserAnimationsModule,
     AppRouterModule,
     SharedModule,

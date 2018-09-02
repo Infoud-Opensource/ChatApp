@@ -2,11 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'ica-index',
-  template: `
-    <p>
-      index works!
-    </p>
-  `,
+  template: `<router-outlet></router-outlet>`,
   styles: []
 })
 export class IndexComponent implements OnInit {
