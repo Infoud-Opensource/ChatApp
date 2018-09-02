@@ -72,8 +72,6 @@ export class AuthService {
 
   getAuthState() { return this._firebaseAuth.authState }
 
-  setNameToFirebase(authUid, name) { return this._db.object(`users/${authUid}`).update({ name: name }) }
-
   deleteUser() {
     this._firebaseAuth.auth.currentUser
       .delete()
@@ -90,6 +88,8 @@ export class AuthService {
       .valueChanges()
       .pipe(
         map((data: any) => {
+          console.log(data);
+          
           this.data = data
           this.userData$.next(data)
           localStorage.setItem('currentUid', data.uid)
