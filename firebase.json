@@ -9,7 +9,7 @@
     ]
   },
   "hosting": {
-    "public": "public",
+    "public": "dist/InfoudChatApp",
     "ignore": [
       "firebase.json",
       "**/.*",

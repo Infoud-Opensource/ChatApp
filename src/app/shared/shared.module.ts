@@ -18,6 +18,9 @@ import {
   MatTabsModule,
   MatCheckboxModule,
   MatProgressSpinnerModule,
+  MatListModule,
+  MatDividerModule,
+  
 } from '@angular/material';
 import { UserActiveStatusComponent } from './user-active-status.component';
 import { MessageDeliveryStatusComponent } from './message-delivery-status.component';
@@ -42,6 +45,8 @@ import { MessageDeliveryStatusComponent } from './message-delivery-status.compon
     MatTabsModule,
     MatCheckboxModule,
     MatProgressSpinnerModule,
+    MatListModule,
+    MatDividerModule
   ],
   exports: [
     HttpModule,
@@ -61,6 +66,10 @@ import { MessageDeliveryStatusComponent } from './message-delivery-status.compon
     MatTabsModule,
     MatCheckboxModule,
     MatProgressSpinnerModule,
+    MatListModule,
+    MatDividerModule,
+    UserActiveStatusComponent,
+    MessageDeliveryStatusComponent
   ],
   declarations: [UserActiveStatusComponent, MessageDeliveryStatusComponent]
 })
