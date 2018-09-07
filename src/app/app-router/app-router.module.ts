@@ -16,11 +16,11 @@ const routes: Routes = [
     path: 'public', component: IndexComponent,
     canActivate: [PublicGuard],
     canActivateChild: [PublicGuard],
-    children:[
-      { path: 'signIn', component: SignInComponent, canActivate:[RedirectGuard] },
-      { path: '', redirectTo: 'signIn', pathMatch: 'full'},
+    children: [
+      { path: 'signIn', component: SignInComponent, canActivate: [RedirectGuard] },
+      { path: '', redirectTo: 'signIn', pathMatch: 'full' },
       { path: '**', redirectTo: 'signIn' },
-      
+
     ]
   },
   {
@@ -33,11 +33,9 @@ const routes: Routes = [
       // { path: 'settings', component: SettingsComponent },
       // { path: 'group', component: GroupFormComponent},
       // { path: 'groupRoom/:id', component: GroupChatroomComponent },
-      { path: '', redirectTo: 'chats', pathMatch: 'full',
-      resolve: { users :HomeComponent}
-      },
+      { path: '', redirectTo: 'chats', pathMatch: 'full', resolve: { user: [PrivateGuard] } },
       { path: '**', redirectTo: 'chats' },
-      
+
     ]
   },
   { path: '', redirectTo: 'public', pathMatch: 'full' },

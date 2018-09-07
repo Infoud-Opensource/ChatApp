@@ -10,7 +10,7 @@ export class RedirectService {
 
   redirectToHome() { return this._router.navigate(['/home']) }
 
-  redirectToSignIn() { return this._router.navigate(['/public/signin']) }
+  redirectToSignIn() { return this._router.navigate(['/public/signIn']) }
 
   redirectToChatRoom(roomId) { return this._router.navigate(['/home/chatRoom', roomId]) }
 
